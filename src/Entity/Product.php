@@ -23,8 +23,8 @@ class Product
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $photo = null;
+    #[ORM\Column]
+    private array $photo = [];
 
     #[ORM\Column(length: 255)]
     private ?string $statusSold = "en vente";
@@ -52,8 +52,13 @@ class Product
     #[ORM\JoinColumn(nullable: false)]
     private ?CategoryItem $categoryItem = null;
 
-    #[ORM\ManyToOne(inversedBy: 'products')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\Column]
+    private ?bool $showPhoneUser = false;
+
+    #[ORM\Column]
+    private ?bool $showEmailUser = false;
+
+    #[ORM\ManyToOne]
     private ?Cart $cart = null;
 
     public function getId(): ?int
@@ -97,12 +102,12 @@ class Product
         return $this;
     }
 
-    public function getPhoto(): ?string
+    public function getPhoto(): array
     {
         return $this->photo;
     }
 
-    public function setPhoto(string $photo): self
+    public function setPhoto(array $photo): self
     {
         $this->photo = $photo;
 
@@ -201,6 +206,30 @@ class Product
     public function setCategoryItem(?CategoryItem $categoryItem): self
     {
         $this->categoryItem = $categoryItem;
+
+        return $this;
+    }
+
+    public function isShowPhoneUser(): ?bool
+    {
+        return $this->showPhoneUser;
+    }
+
+    public function setShowPhoneUser(bool $showPhoneUser): self
+    {
+        $this->showPhoneUser = $showPhoneUser;
+
+        return $this;
+    }
+
+    public function isShowEmailUser(): ?bool
+    {
+        return $this->showEmailUser;
+    }
+
+    public function setShowEmailUser(bool $showEmailUser): self
+    {
+        $this->showEmailUser = $showEmailUser;
 
         return $this;
     }

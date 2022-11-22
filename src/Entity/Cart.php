@@ -17,7 +17,7 @@ class Cart
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?bool $status = null;
+    private ?bool $validated = false;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
@@ -39,14 +39,14 @@ class Cart
         return $this->id;
     }
 
-    public function isStatus(): ?bool
+    public function isValidated(): ?bool
     {
-        return $this->status;
+        return $this->validated;
     }
 
-    public function setStatus(bool $status): self
+    public function setValidated(bool $validated): self
     {
-        $this->status = $status;
+        $this->validated = $validated;
 
         return $this;
     }

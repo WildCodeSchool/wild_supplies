@@ -31,6 +31,9 @@ class CategoryItem
     #[ORM\OneToMany(mappedBy: 'categoryItem', targetEntity: Product::class, orphanRemoval: true)]
     private Collection $products;
 
+    #[ORM\Column]
+    private ?bool $inCarousel = false;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -115,6 +118,18 @@ class CategoryItem
                 $product->setCategoryItem(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isInCarousel(): ?bool
+    {
+        return $this->inCarousel;
+    }
+
+    public function setInCarousel(bool $inCarousel): self
+    {
+        $this->inCarousel = $inCarousel;
 
         return $this;
     }
