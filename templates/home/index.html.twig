@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
     <div class="pink-stripe">
@@ -8,6 +8,20 @@
             Let's start coding&nbsp;&#129304;
         </h1>
     </div>
+
+    {# tests pour vérification de reupération de données #}
+     {% for product in products %}
+     {% for role in product.user.roles %}
+      {{dump (role)}}
+
+     {% endfor %}
+    {% endfor %}
+
+    {% for category in categories %}
+      {{dump (category.title)}}
+    {% endfor %}
+
+
     <div class="white-stripe">
         <img src="{{ asset('build/images/LOGO_WILD_CODE_SCHOOL.png') }}"
              alt="">
