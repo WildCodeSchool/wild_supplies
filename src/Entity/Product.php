@@ -58,7 +58,7 @@ class Product
     #[ORM\Column]
     private ?bool $showEmailUser = false;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(inversedBy: 'products')]
     private ?Cart $cart = null;
 
     public function getId(): ?int
