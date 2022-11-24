@@ -13,7 +13,6 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(ProductRepository $productRepository, CategoryItemRepository $categoryRepository): Response
     {
-
         $products = $productRepository->selectlast(3);
         $categories = $categoryRepository->selectAllInCarousel();
         return $this->render(

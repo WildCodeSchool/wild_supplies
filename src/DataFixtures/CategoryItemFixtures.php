@@ -13,28 +13,28 @@ class CategoryItemFixtures extends Fixture
             "Ameublement",
             "Votre meuble n'a plus son utilité , Vendez le",
             "https://cdn.pixabay.com/photo/2014/08/11/21/39/wall-416060_960_720.jpg",
-            "build/images/ameublement2.png",
+            "ameublement2.png",
             true
         ],
         [
             "Décoration",
             "Vous recherchez une décoration unique .",
             "https://cdn.pixabay.com/photo/2017/09/09/18/25/living-room-2732939_960_720.jpg",
-            "build/images/deco2.png",
+            "deco2.png",
             true
         ],
         [
             "Luminaires",
             "Eclairez votre habitation pour mettre en valeur votre décoration.",
             "https://cdn.pixabay.com/photo/2017/08/10/01/45/lights-2616955_960_720.jpg",
-            "build/images/luminaire2.png",
+            "luminaire2.png",
             true
         ],
         [
             "Electromenager",
             "Un soucis de four. Changez le !",
             "https://cdn.pixabay.com/photo/2022/01/04/05/29/kitchen-6914223_960_720.jpg",
-            "build/images/electromenager2.png",
+            "electromenager2.png",
             true
         ]
     ];

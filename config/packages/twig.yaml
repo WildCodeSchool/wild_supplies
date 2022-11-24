@@ -2,6 +2,8 @@ twig:
     globals:
          globalService: '@App\Service\GlobalService'
          categoryItems: '@App\Repository\CategoryItemRepository'
+         pathImages: 'assets/images/'
+         pathSvg: 'assets/svg/'
     default_path: '%kernel.project_dir%/templates'
 
 when@test:
