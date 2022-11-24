@@ -14,7 +14,7 @@ use App\Entity\User;
 class CartController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index()
+    public function index(): Response
     {
         //if (!is_null($this->user)) {
             //$product = new Product();
