@@ -13,9 +13,11 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
     public const PRODUCTS = [
         [
             'Rétroprojecteur', 100, 'Mon vieux rétro de marque acer.',
-            ["/assets/images/20221109_151527.jpg",
-             "/assets/images/20221109_151533.jpg",
-              "/assets/images/20221109_151549.jpg"],
+            [
+                "build/images/20221109_151527.jpg",
+                "build/images/20221109_151533.jpg",
+                "build/images/20221109_151549.jpg"
+            ],
             'en vente',
             ["PVC", "Verre"],
             'category_Electromenager',
@@ -29,9 +31,11 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             'Frigo',
             499,
             'Juste un simple frigo',
-            ["/assets/images/20221109_151650.jpg",
-             "/assets/images/20221109_151658.jpg",
-              "/assets/images/20221109_151713.jpg"],
+            [
+                "build/images/20221109_151650.jpg",
+                "build/images/20221109_151658.jpg",
+                "build/images/20221109_151713.jpg"
+            ],
             'en vente',
             ["Métal", "PVC"],
             'category_Electromenager',
@@ -44,9 +48,11 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             'Cafetiére',
             78,
             'Fais le café, type senseo. (café offert)',
-            ["/assets/images/20221109_151731.jpg",
-             "/assets/images/20221109_151738.jpg",
-              "/assets/images/20221109_151745.jpg"],
+            [
+                "build/images/20221109_151731.jpg",
+                "build/images/20221109_151738.jpg",
+                "build/images/20221109_151745.jpg"
+            ],
             'en vente',
             ["PVC"],
             'category_Electromenager',
@@ -59,9 +65,11 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             'Micro onde',
             35,
             'Un micro onde de marque Listo.',
-            ["/assets/images/20221109_151804.jpg",
-             "/assets/images/20221109_151808.jpg",
-              "/assets/images/20221109_151814.jpg"],
+            [
+                "build/images/20221109_151804.jpg",
+                "build/images/20221109_151808.jpg",
+                "build/images/20221109_151814.jpg"
+            ],
             'en vente',
             ["PVC"],
             'category_Electromenager',
@@ -74,9 +82,11 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             'Ecran 4:3',
             45,
             'Un ecran de PC bof',
-            ["/assets/images/20221109_151832.jpg",
-             "/assets/images/20221109_151838.jpg",
-              "/assets/images/20221109_151844.jpg"],
+            [
+                "build/images/20221109_151832.jpg",
+                "build/images/20221109_151838.jpg",
+                "build/images/20221109_151844.jpg"
+            ],
             'en vente',
             ["PVC", "Verre"],
             'category_Electromenager',
@@ -89,8 +99,10 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             'Une chaise noire',
             12,
             'Une chaise noir en bonne etat',
-            ["/assets/images/20221109_151907.jpg",
-             "/assets/images/20221109_151913.jpg"],
+            [
+                "build/images/20221109_151907.jpg",
+                "build/images/20221109_151913.jpg"
+            ],
             'en vente',
             ["Bois", "Tissu"],
             'category_Ameublement',
@@ -103,8 +115,10 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             'Bureau',
             299,
             'Un bureau haut de gamme',
-            ["/assets/images/20221109_151936.jpg",
-             "/assets/images/20221109_151942.jpg"],
+            [
+                "build/images/20221109_151936.jpg",
+                "build/images/20221109_151942.jpg"
+            ],
             'en vente',
             ["Bois"],
             'category_Ameublement',
@@ -117,8 +131,10 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             'Chaise bureau',
             30,
             'Chaise de bureau sur roulettes, réglable en hauteur, très confortable.',
-            ["/assets/images/20221109_152023.jpg",
-             "/assets/images/20221109_152032.jpg"],
+            [
+                "build/images/20221109_152023.jpg",
+                "build/images/20221109_152032.jpg"
+            ],
             'en vente',
             ["PVC", "Tissu"],
             'category_Ameublement',
@@ -131,7 +147,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             'Chaise pliante',
             11,
             'Chaise pliante orange, idéale pour la pêche.',
-            ["/assets/images/20221109_152050.jpg"],
+            ["build/images/20221109_152050.jpg"],
             'en vente',
             ["PVC"],
             'category_Ameublement',
@@ -144,7 +160,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             'Un néon',
             85,
             'Un néon qui fait de la lumière.',
-            ["/assets/images/20221109_152107.jpg"],
+            ["build/images/20221109_152107.jpg"],
             'en vente',
             ["Métal", "Verre"],
             'category_Luminaires',
@@ -156,8 +172,10 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             'Table blanche',
             123,
             'Une table fragile, et fragilisé.',
-            ["/assets/images/20221109_152142.jpg",
-             "/assets/images/20221109_152148.jpg"],
+            [
+                "build/images/20221109_152142.jpg",
+                "build/images/20221109_152148.jpg"
+            ],
             'en vente',
             ["Bois", "Métal"],
             'category_Ameublement',
@@ -170,7 +188,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             'Tabouret qui tourne',
             40,
             'Un tabouret de bar pour se croire dans un manège.',
-            ["/assets/images/20221109_152234.jpg"],
+            ["build/images/20221109_152234.jpg"],
             'en vente',
             ["Métal", "Tissu"],
             'category_Ameublement',
@@ -183,7 +201,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             'Spot',
             5,
             'Un spot de lumière blanche',
-            ["/assets/images/20221109_152353.jpg"],
+            ["build/images/20221109_152353.jpg"],
             'en vente',
             ["Verre"],
             'category_Luminaires',
@@ -196,7 +214,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             'Tasse',
             4,
             'Un peu sale mais joli.',
-            ["/assets/images/20221109_152553.jpg"],
+            ["build/images/20221109_152553.jpg"],
             'en vente',
             ["Verre"],
             'category_Décoration',

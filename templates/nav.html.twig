@@ -1,0 +1,79 @@
+{% from "_macros/loginPrompt.html.twig" import loginPrompt %}
+{% from "_macros/utils.html.twig" import button, userAvatar %}
+
+<header class='top-bar'>
+	<div class="main">
+		<a href="/">
+			<img src="{{ asset('build/images/logook.png') }}" class="logo" alt="logo"></a>
+	</div>
+	<form class="search-box" id="search" action="/products" method="GET">
+		<img src="{{ asset('build/images/magglass.png')}}">
+		<input type="text" class="input-search" placeholder="Rechercher..." name="search" id="search">
+		{{ button("Go!", { submit: true }) }}
+	</form>
+	<ul class="menu" id="icons" onclick="searchHide();">
+		{% if app.user %}
+			<li>
+				<a href="/products/add"><img src="{{ asset('build/images/Vector.png')}}"></a>
+			</li>
+			<li>
+				<a href="/book"><img src="{{ asset('build/images/carnet.png')}}"></a>
+			</li>
+			<li>
+				<a href="/cart" {# Enter link here #}><img src="{{ asset('build/images/panier.png')}}">
+					{% if app.user.cart|length > 0 %}
+						<div class="cartNbr">
+							{{app.user.cart|length}}
+						</div>
+					{% endif %}
+				</a>
+			</li>
+			<li>
+				<a class="loginButton">{{ userAvatar(app.user.photo) }}</a>
+			</li>
+		{% else %}
+			<li>
+				<a class="loginButton"><img src="{{ asset('build/images/compte.png')}}"></a>
+			</li>
+		{% endif %}
+	</ul>
+	<nav>
+		<ul class="burger-button">
+			<li>
+				<button class="hamburger">
+					<div class="bar"></div>
+				</button>
+			</li>
+		</ul>
+		{{ loginPrompt() }}
+	</nav>
+</header>
+<nav class="header2">
+	<!-- Quick access categories -->
+	<ul class="quick-access">
+		{% for index, category in categoryItems.selectAllInCarousel %}
+			<li>
+				<a href="/products?category={{ category.id }}">
+					<img src="{{ asset(category.logo) }}"/>
+					<p>{{ category.title }}</p>
+				</a>
+			</li>
+			{% if index < (categoryItems.selectAllInCarousel|length) - 1 %}
+				<li class="line"></li>
+			{% endif %}
+		{% endfor %}
+	</ul>
+	{% if app.user %}
+		<div class="mobile-nav">
+			<div>
+				{{ userAvatar(app.user.photo) }}
+			</div>
+			<ul>
+				<li><a href="/products/add"><img src="{{ asset('build/images/Vector.png')}}" alt="add logo"></a></li>
+				<li><a href="/book"><img src="{{ asset('build/images/carnet.png')}}" alt="book logo"></a></li>
+				<li><a href="/cart"{# Enter link here #}><img src="{{ asset('build/images/panier.png')}}" alt="cart logo">{% if app.user.cart|length > 0 %}<div class="cartNbrMobile">{{app.user.cart|length}}</div>{% endif %}</a></li>
+				<li><a href="/logout"><img src="{{ asset('build/svg/logout.svg')}}" alt="logout logo"></a></li>
+			</ul>
+		</div>
+	{% endif %}
+</nav>
