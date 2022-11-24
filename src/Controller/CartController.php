@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Controller;
+
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\CartRepository;
@@ -20,7 +20,7 @@ class CartController extends AbstractController
             //$product = new Product();
             //$products = $product->selectProductInCart($this->user['id']);
             $products = [];
-            return $this->render('cart/index.html.twig', ['products' => $products, 'cart' => $this]);   /*      
+            return $this->render('cart/index.html.twig', ['products' => $products, 'cart' => $this]);   /*
         } else {
             header("Location: /");
         }*/
