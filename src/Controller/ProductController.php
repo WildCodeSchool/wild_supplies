@@ -10,8 +10,9 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use App\Repository\ProductRepository;
-use App\Entity\Product;
 use App\Form\ProductType;
+use App\Entity\Product;
+use DateTime;
 
 /*
 use App\Model\CategoryItemManager;
@@ -64,13 +65,12 @@ class ProductController extends AbstractController
 
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
-        $product->setDate(new \DateTime);
+        $product->setDate(new DateTime());
 
         if ($form->isSubmitted()) {
-
             $productRepository->save($product, true);
         }
-        
+
 
         // Render the form (best practice)
 
@@ -80,9 +80,9 @@ class ProductController extends AbstractController
 
         ]);
     }
-       
+
    /*
-   
+
 
     // check if a key of array is empty
     private function checkArray(string $key): void

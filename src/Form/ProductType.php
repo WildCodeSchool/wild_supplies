@@ -28,36 +28,36 @@ class ProductType extends AbstractType
                 'choices'  =>
                 [
                 'bois' => 'bois',
-                'métal' => 'métal',   
+                'métal' => 'métal',
                 'tissus' => 'tissus',
                 'plastique' => 'plastique',
                 'verre' => 'verre',
                 'PVC' => 'PVC'
                 ],
-            'multiple'=>true,
-            'expanded'=>true])
+                'multiple' => true,
+                'expanded' => true])
             ->add('categoryRoom', ChoiceType::class, [
                 'choices'  =>
                 [
                 'Bureau' => 'Bureau',
-                'Chambre' => 'Chambre',   
+                'Chambre' => 'Chambre',
                 'Salon' => 'Salon',
                 'Cuisine' => 'Cuisine',
                 'Salle à manger' => 'Salle à manger'
                 ],
-            'multiple'=>true,
-            'expanded'=>true])
+                'multiple' => true,
+                'expanded' => true])
             ->add('color', ChoiceType::class, [
                 'choices'  =>
                 [
                 'noir' => "#000000",
-                'blanc' => '#FFFFFF',   
+                'blanc' => '#FFFFFF',
                 'bleu' => "#0000FF",
                 'rouge' => '#FF0000',
                 'vert' => '00561b'
                 ],
-            'multiple'=>true,
-            'expanded'=>true])
+                'multiple' => true,
+                'expanded' => true])
             ->add('state', TextType::class)
             ->add('showPhoneUser', ChoiceType::class, [
                 'choices'  => [
