@@ -35,24 +35,24 @@ class ProductController extends AbstractController
 {
     #[Route('/', methods: ["GET"], name: 'index')]
     public function index(ProductRepository $productRepository): Response
-    {   
+    {
         $products = $productRepository->findAll();
-        
+
         return $this->render('product/index.html.twig', [
             'products' => $products
         ]);
     }
 
 
-#[Route('/show/{id}', methods: ["GET"], name: 'show')]
-public function show(int $id, ProductRepository $productRepository): Response
-{
-    $product = $productRepository->find($id);
+    #[Route('/show/{id}', methods: ["GET"], name: 'show')]
+    public function show(int $id, ProductRepository $productRepository): Response
+    {
+        $product = $productRepository->find($id);
 
-    return $this->render('product/show.html.twig', [
+        return $this->render('product/show.html.twig', [
         'product' => $product
-    ]);
-}
+        ]);
+    }
    /*
     }
 
