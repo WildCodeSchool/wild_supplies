@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use App\Repository\ProductRepository;
 use App\Entity\Product;
+use App\Form\ProductType;
 
 /*
 use App\Model\CategoryItemManager;
@@ -53,21 +54,35 @@ class ProductController extends AbstractController
         'product' => $product
         ]);
     }
-   /*
-    }
 
-    public function show(int $id): string
+    #[Route('/add', name: 'add')]
+    public function add(Request $request, ProductRepository $productRepository): Response
     {
-        $productManager = new productManager();
-        $product = $productManager->selectOneWithCategoryId($id);
 
-        $product['photo'] = json_decode($product['photo'], false);
-        $product['color'] = json_decode($product['color'], false);
-        $product['material'] = json_decode($product['material'], false);
-        $product['category_room'] = json_decode($product['category_room'], false);
+        $product = new Product();
+             // Create the form, linked with $category
 
-        return $this->twig->render('Product/show.html.twig', ['product' => $product]);
+        $form = $this->createForm(ProductType::class, $product);
+        $form->handleRequest($request);
+        $product->setDate(new \DateTime);
+
+        if ($form->isSubmitted()) {
+
+            $productRepository->save($product, true);
+        }
+        
+
+        // Render the form (best practice)
+
+        return $this->renderForm('product/add.html.twig', [
+
+            'form' => $form,
+
+        ]);
     }
+       
+   /*
+   
 
     // check if a key of array is empty
     private function checkArray(string $key): void
