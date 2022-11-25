@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Page produits -
+	{{ parent() }}
+{% endblock %}
+
+{% block content %}
+	<main class="container">
+		<h1>
+			Tous les produits :
+		</h1>
+
+
+		{% if products is not empty %}
+			{% for product in products %}
+				<a href="{{ path('products_show', {id: product.id}) }}">
+
+					<img src="{{ asset(pathImages ~ product.photo[0]) }}" alt=""/>
+
+					<div class="content">
+
+						<h2 class="title">{{ product.title }}</h2>
+						<p class="description">{{ product.description }}</p>
+						<p class="price">{{ product.price }}</p>
+						<p class="user">{{ product.user.pseudo }}</p>
+						<img src="{{product.user.photo}}"/>
+					</div>
+				</a>
+
+			{% endfor %}
+
+		{% else %}
+			Aucun produit trouvés.
+
+		{% endif %}
+	</main>
+{% endblock %}
+{% block javascript %}
+	<script src="/assets/js/products.js"></script>
+{% endblock %}
