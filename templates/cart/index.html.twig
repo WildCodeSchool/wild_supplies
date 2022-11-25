@@ -1,4 +1,4 @@
-{% extends 'layout.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% from "_macros/productCard.html.twig" import productCard %}
 
@@ -7,7 +7,6 @@
 		<h1 class="text-center">Mon Panier</h1>
 		<ul class="productsCart">
 			{% if not (products is empty) %}
-
 				{% for product in products %}
 					<li class="products-cart">
 						{{ productCard(product) }}
