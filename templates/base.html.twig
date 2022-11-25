@@ -9,12 +9,27 @@
             {% block title %}Wild Supply{% endblock %}
         </title>
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+<<<<<<< HEAD
             {{ encore_entry_link_tags('app') }}
         {% block stylesheets %}
         {% endblock %}
 
             {{ encore_entry_script_tags('app') }}
         {% block javascripts %}
+=======
+        {{ encore_entry_link_tags('app') }}
+        {{ encore_entry_link_tags('nav') }}
+        {{ encore_entry_link_tags('login') }}
+        {{ encore_entry_link_tags('button') }}
+        {{ encore_entry_link_tags('utils') }}
+
+        {% block stylesheets %}            
+        {% endblock %}
+
+        {{ encore_entry_script_tags('app') }}
+        {{ encore_entry_script_tags('navjs') }}
+        {% block javascripts %}            
+>>>>>>> bd689ad4ac115e77316c44698da33c4168589f34
         {% endblock %}
     </head>
     <body>
