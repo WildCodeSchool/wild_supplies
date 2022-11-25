@@ -1,21 +1,14 @@
 /*////// Main bar //////*/
 
-header {
-    height: 69px;
-}
-
 .header2 {
     height: 60px;
-}
-
-main {
-    min-height: calc(100vh - 69px - 60px - 65px);
 }
 
 .top-bar {
     background-color: var(--blueColor);
     display: flex;
     justify-content: space-between;
+    height: 69px;
 }
 
 .menu a {

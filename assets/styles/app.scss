@@ -1,23 +1,4 @@
-//start coding by removing this file and adding yours ;)
 @import "~bootstrap/scss/bootstrap";
-
-/*@import url("book.scss");
-@import url("button.scss");
-@import url("home.scss");
-@import url("login.scss");
-@import url("pageSwitcher.scss");
-@import ("products");
-@import ("productCard");
-@import ("ratingStars");
-
-@import url("show.scss");
-@import url("formCategoryItem.scss");
-@import url("indexCategoryItems.scss");
-@import ("cart");
-
-@import url("utils.scss");
-@import url("form_products.scss");
-@import url("footerLink.scss");*/
 
 :root {
   --lightGreyContrastColor: #eeeeee;
@@ -42,6 +23,11 @@
 body {
   color: #000000;
   font-family: "Roboto", sans-serif;
+}
+
+
+main {
+  min-height: calc(100vh - 69px - 60px - 65px);
 }
 
 p,

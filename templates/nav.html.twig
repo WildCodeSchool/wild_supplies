@@ -11,7 +11,7 @@
 		<input type="text" class="input-search" placeholder="Rechercher..." name="search" id="search">
 		{{ button("Go!", { submit: true }) }}
 	</form>
-	<ul class="menu" id="icons" onclick="searchHide();">
+	<ul class="menu" id="icons">
 		{% if app.user %}
 			<li>
 				<a href="/products/add"><img src="/{{ pathImages }}Vector.png"></a>

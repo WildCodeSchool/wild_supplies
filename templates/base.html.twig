@@ -11,11 +11,15 @@
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {{ encore_entry_link_tags('app') }}
         {{ encore_entry_link_tags('nav') }}
+        {{ encore_entry_link_tags('login') }}
+        {{ encore_entry_link_tags('button') }}
+        {{ encore_entry_link_tags('utils') }}
 
         {% block stylesheets %}            
         {% endblock %}
 
         {{ encore_entry_script_tags('app') }}
+        {{ encore_entry_script_tags('navjs') }}
         {% block javascripts %}            
         {% endblock %}
     </head>
