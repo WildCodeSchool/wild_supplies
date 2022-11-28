@@ -20,7 +20,7 @@ class CartController extends BaseController
     {
         $cartCurrent = new Cart();
         $user = $this->getUser();
-        if ($user) {
+        if ($user->getId()) {
             $products = [];
             foreach ($user->getCarts() as $cart) {
                 if (!$cart->isValidated()) {
