@@ -31,9 +31,10 @@ class CartController extends AbstractController
                     }
                 }
             }
-            return $this->render('cart/index.html.twig',
-            ['products' => $products, 'cart' => $cartCurrent]
-        );
+            return $this->render(
+                'cart/index.html.twig',
+                ['products' => $products, 'cart' => $cartCurrent]
+            );
         } else {
             return $this->render('/index.html.twig');
         }
