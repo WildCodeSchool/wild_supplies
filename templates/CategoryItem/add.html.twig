@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block title %}New Catégories
+{% endblock %}
+
+{% block body %}
+	<h1>Create new Catégories</h1>
+	{{ include('CategoryItem/_form.html.twig') }}
+	<a href="{{ path('category_index') }}">back</a>
+{% endblock %}

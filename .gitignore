@@ -10,6 +10,7 @@ db-data
 /public/bundles/
 /var/
 /vendor/
+/migration/
 ###< symfony/framework-bundle ###
 
 ###> symfony/webpack-encore-bundle ###

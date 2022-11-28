@@ -44,6 +44,9 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry("app", "./assets/app.js")
+    .addEntry("styles", "./assets/styles/app.scss")
+    .addEntry("category", "./assets/styles/category.scss")
+    .addEntry("formCategory", "./assets/styles/formCategoryItem.scss")
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge("./assets/controllers.json")
@@ -77,20 +80,20 @@ Encore
         config.useBuiltIns = "usage";
         config.corejs = 3;
     })
-// uncomment if you use TypeScript
-// .enableTypeScriptLoader()
+    // uncomment if you use TypeScript
+    // .enableTypeScriptLoader()
 
-// uncomment if you use React
-// .enableReactPreset()
+    // uncomment if you use React
+    // .enableReactPreset()
 
-// uncomment to get integrity="..." attributes on your script & link tags
-// requires WebpackEncoreBundle 1.4 or higher
-// .enableIntegrityHashes(Encore.isProduction())
+    // uncomment to get integrity="..." attributes on your script & link tags
+    // requires WebpackEncoreBundle 1.4 or higher
+    // .enableIntegrityHashes(Encore.isProduction())
 
-// uncomment if you're having problems with a jQuery plugin
-// .autoProvidejQuery()
+    // uncomment if you're having problems with a jQuery plugin
+    // .autoProvidejQuery()
 
-// enables Sass/SCSS support
+    // enables Sass/SCSS support
     .enableSassLoader();
 const fullConfig = Encore.getWebpackConfig();
 fullConfig.devServer = {
