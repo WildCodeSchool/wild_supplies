@@ -5,11 +5,16 @@
 {% block title %}Accueil
 {% endblock %}
 
+{% block stylesheets %}
+	{{ encore_entry_link_tags('productCard') }}
+	{{ encore_entry_link_tags('form_products') }}
+	{{ encore_entry_link_tags('home') }}
+
+{% endblock %}
+
 {% block body %}
 	<main class="home">
-
-
-		{# <section class="carouselContainer">
+		<section class="carouselContainer">
 			{% if app.user is null %}
 				<a href="/signup" class="btn btn-primary-banner">
 					Créer un compte
@@ -32,31 +37,31 @@
 				</ul>
 				<ul class="carousel-inner">
 					<li class="carousel-item active w-100">
-						<img src="{{ asset(categories[0]['photo'])}}" class="d-block w-100 img-home" alt="...">
+						<img src="{{ categories[0].photo }}" class="d-block w-100 img-home" alt="...">
 						<div class="carousel-caption d-none d-md-block">
-							<h2>{{categories[0]['title']}}</h2>
-							<p>{{categories[0]['description']}}</p>
+							<h2>{{ categories[0].title }}</h2>
+							<p>{{ categories[0].description }}</p>
 						</div>
 					</li>
 					<li class="carousel-item">
-						<img src="{{ asset(categories[1]['photo'])}}" class="d-block w-100 img-home" alt="...">
+						<img src="{{ asset(categories[1].photo) }}" class="d-block w-100 img-home" alt="...">
 						<div class="carousel-caption d-none d-md-block">
-							<h2>{{categories[1]['title']}}</h2>
-							<p>{{categories[1]['description']}}</p>
+							<h2>{{ categories[1].title }}</h2>
+							<p>{{ categories[1].description }}</p>
 						</div>
 					</li>
 					<li class="carousel-item">
-						<img src="{{ asset(categories[2]['photo'])}}" class="d-block w-100 img-home" alt="...">
+						<img src="{{ asset(categories[2].photo) }}" class="d-block w-100 img-home" alt="...">
 						<div class="carousel-caption d-none d-md-block">
-							<h2>{{categories[2]['title']}}</h2>
-							<p>{{categories[2]['description']}}</p>
+							<h2>{{ categories[2].title }}</h2>
+							<p>{{ categories[2].description }}</p>
 						</div>
 					</li>
 					<li class="carousel-item">
-						<img src="{{ asset(categories[3]['photo'])}}" class="d-block w-100 img-home" alt="...">
+						<img src="{{ asset(categories[3].photo) }}" class="d-block w-100 img-home" alt="...">
 						<div class="carousel-caption d-none d-md-block">
-							<h2>{{categories[3]['title']}}</h2>
-							<p>{{categories[3]['description']}}</p>
+							<h2>{{ categories[3].title }}</h2>
+							<p>{{ categories[3].description }}</p>
 						</div>
 					</li>
 				</ul>
@@ -74,7 +79,7 @@
 					Modifiez vos catégories
 				</a>
 			{% endif %}
-		</section> #}
+		</section>
 
 		<article>
 			<h1 class="text-center">Les Derniers Articles Ajoutés</h1>
@@ -82,7 +87,7 @@
 				{% if not (products is empty) %}
 					<div class="products">
 						{% for product in products %}
-							{# {{ productCard(product) }} #}
+							{{ productCard(product) }}
 						{% endfor %}
 					</div>
 				{% else %}
