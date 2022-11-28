@@ -5,8 +5,11 @@ namespace App\Entity;
 use App\Repository\ProductRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
+#[Vich\Uploadable] 
 class Product
 {
     #[ORM\Id]
@@ -23,8 +26,11 @@ class Product
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'json')]
     private array $photo = [];
+
+    #[Vich\UploadableField(mapping: 'photo_file', fileNameProperty: 'photo')]
+     private File $photoFile;
 
     #[ORM\Column(length: 255)]
     private ?string $statusSold = "en vente";
@@ -244,5 +250,29 @@ class Product
         $this->cart = $cart;
 
         return $this;
+    }
+
+    public function setPhotoFile(File $image = null): Program
+
+    {
+
+        $this->photoFile = $image;
+
+        return $this;
+
+    }
+
+
+    public function getPhotoFile(): ?File
+
+    {   if (is_array($this->photoFile)) {
+        foreach ($this->photoFile as $file) {
+            return $file;
+        }
+    }
+
+    if($this->photoFile === null) {
+        return null;
+    }
     }
 }

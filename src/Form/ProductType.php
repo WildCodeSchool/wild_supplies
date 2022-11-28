@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class ProductType extends AbstractType
 {
@@ -21,8 +22,12 @@ class ProductType extends AbstractType
             ->add('title', TextType::class)
             ->add('price', IntegerType::class)
             ->add('description', TextType::class)
-            ->add('photo', FileType::class, [
-                'multiple' => true])
+            ->add('photoFile', VichFileType::class, [
+                'required'      => false,
+                'allow_delete'  => true, // not mandatory, default is true
+                'download_uri' => true, // not mandatory, default is true
+
+    ])
             ->add('statusSold', TextType::class)
             ->add('material', ChoiceType::class, [
                 'choices'  =>
