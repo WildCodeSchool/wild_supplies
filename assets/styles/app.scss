@@ -1,7 +1,48 @@
-//start coding by removing this file and adding yours ;)
 @import "~bootstrap/scss/bootstrap";
 
-img {
-  width: 100px;
-  height: 100px;
+:root {
+  --lightGreyContrastColor: #eeeeee;
+  --productCardBackgroundColor: white;
+  --shadowColor: rgba(0, 0, 0, 0.25);
+  --textColor: black;
+  --blueColor: #4981a6;
+  --lessblueColor: #4981a663;
+  --pCarousel: #fbfbfb;
+  --secondaryColor: #f1f1f1;
+  --plainText: black;
+  --buttonsAndBorders: white;
+  --yellowColor: rgb(254, 174, 24);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: #000000;
+  font-family: "Roboto", sans-serif;
+}
+
+
+main {
+  min-height: calc(100vh - 69px - 60px - 65px);
+}
+
+p,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+h1 {
+  margin: 16px 0px;
+}
+
+.errors {
+  color: red;
 }

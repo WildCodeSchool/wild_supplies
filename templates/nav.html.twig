@@ -4,23 +4,23 @@
 <header class='top-bar'>
 	<div class="main">
 		<a href="/">
-			<img src="{{ pathImages }}logook.png" class="logo" alt="logo"></a>
+			<img src="/{{ pathImages }}logook.png" class="logo" alt="logo"></a>
 	</div>
 	<form class="search-box" id="search" action="/products" method="GET">
-		<img src="{{ pathImages }}magglass.png">
+		<img src="/{{ pathImages }}magglass.png">
 		<input type="text" class="input-search" placeholder="Rechercher..." name="search" id="search">
 		{{ button("Go!", { submit: true }) }}
 	</form>
-	<ul class="menu" id="icons" onclick="searchHide();">
+	<ul class="menu" id="icons">
 		{% if app.user %}
 			<li>
-				<a href="/products/add"><img src="{{ pathImages }}Vector.png"></a>
+				<a href="/products/add"><img src="/{{ pathImages }}Vector.png"></a>
 			</li>
 			<li>
-				<a href="/book"><img src="{{ pathImages }}carnet.png"></a>
+				<a href="/book"><img src="/{{ pathImages }}carnet.png"></a>
 			</li>
 			<li>
-				<a href="/cart" {# Enter link here #}><img src="{{ pathImages }}panier.png">
+				<a href="/cart" {# Enter link here #}><img src="/{{ pathImages }}panier.png">
 					{% if app.user.cart|length > 0 %}
 						<div class="cartNbr">
 							{{app.user.cart|length}}
@@ -29,11 +29,11 @@
 				</a>
 			</li>
 			<li>
-				<a class="loginButton">{{ userAvatar(app.user.photo) }}</a>
+				<a class="loginButton">/{{ userAvatar(app.user.photo) }}</a>
 			</li>
 		{% else %}
 			<li>
-				<a class="loginButton"><img src="{{ pathImages }}compte.png"></a>
+				<a class="loginButton"><img src="/{{ pathImages }}compte.png"></a>
 			</li>
 		{% endif %}
 	</ul>
