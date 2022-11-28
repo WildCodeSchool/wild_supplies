@@ -13,7 +13,7 @@ use App\Entity\User;
 use App\Entity\Product;
 
 #[Route('/cart', name: 'cart_')]
-class CartController extends AbstractController
+class CartController extends BaseController
 {
     #[Route('/', name: 'index')]
     public function index(CartRepository $cartRepository): Response

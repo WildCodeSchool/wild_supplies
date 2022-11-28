@@ -235,7 +235,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, Cart>
      */
-    public function getCarts(UserInterface $user = null): Collection
+    public function getCarts(): Collection
     {
         return $this->carts;
     }
