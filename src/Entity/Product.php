@@ -29,8 +29,8 @@ class Product
     #[ORM\Column(type: 'json')]
     private array $photo = [];
 
-  /*  #[Vich\UploadableField(mapping: 'photo_file', fileNameProperty: 'photo')]
-    private File $photoFile;*/
+    #[Vich\UploadableField(mapping: 'photo_file', fileNameProperty: 'photo')]
+    private File $photoFile;
 
     #[ORM\Column(length: 255)]
     private ?string $statusSold = "en vente";
@@ -251,7 +251,7 @@ class Product
 
         return $this;
     }
-/*
+
     public function setPhotoFile(File $image = null): Program
     {
 
@@ -272,5 +272,5 @@ class Product
         if ($this->photoFile === null) {
             return null;
         }
-    }*/
+    }
 }
