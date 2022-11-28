@@ -13,17 +13,19 @@
         {{ encore_entry_link_tags('login') }}
         {{ encore_entry_link_tags('button') }}
         {{ encore_entry_link_tags('utils') }}
+        {{ encore_entry_link_tags('footer') }}
 
-        {% block stylesheets %}            
+        {% block stylesheets %}
         {% endblock %}
 
         {{ encore_entry_script_tags('app') }}
         {{ encore_entry_script_tags('navjs') }}
-        {% block javascripts %}            
+        {% block javascripts %}
         {% endblock %}
     </head>
     <body>
     {% include "nav.html.twig" %}
         {% block body %}{% endblock %}
+    {% include "footer.html.twig" %}
     </body>
 </html>

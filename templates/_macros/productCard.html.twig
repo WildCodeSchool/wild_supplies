@@ -40,7 +40,8 @@
 	<article class="productCard" onload="productCard.onload(this)">
 		<a href="/product?id={{product.id}}">
 			<div class="imageContainer">
-				<div class="image" style="background-image: url({{ product.photo[0] }});"></div>
+				<div class="image" style="background-image: url({{pathImages}}{{product.photo[0]}});"></div>
+
 			</div>
 			<div class="content">
 				<div>
@@ -48,14 +49,14 @@
 						<div class="seller">
 							<p class="label">Vendu par</p>
 							<div class="user">
-								<div class="avatar" style="background-image: url({{ product.user_photo }});"></div>
+								<div class="avatar" style="background-image: url({{ product.user.photo }});"></div>
 								<p class="pseudo">
-									{{ product.user_pseudo }}
+									{{ product.user.pseudo }}
 								</p>
 							</div>
 						</div>
 					</div>
-					<div>{{ ratingStars(product.user_rating) }}</div>
+					<div>{{ ratingStars(product.user.rating) }}</div>
 				</div>
 				<div>
 					<h2 class="title">{{ product.title }}</h2>
