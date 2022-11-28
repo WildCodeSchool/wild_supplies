@@ -15,9 +15,9 @@ use Symfony\Component\BrowserKit\Request;
 class CategoryItemController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(CategoryItemRepository $categoryItemRepository): Response
+    public function index(CategoryItemRepository $categoryRepository): Response
     {
-        $categoriesItems = $categoryItemRepository->findAll();
+        $categoriesItems = $categoryRepository->findAll();
 
         return $this->render(
             'CategoryItem/index.html.twig',
@@ -28,14 +28,14 @@ class CategoryItemController extends AbstractController
         );
     }
 
-    public function add(Request $request, CategoryItemRepository $categoryItemRepository): Response
+    public function add(Request $request, CategoryItemRepository $categoryRepository): Response
     {
         $category = new CategoryItem();
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $categoryItemRepository->save($category, true);
+            $categoryRepository->save($category, true);
 
             return $this->redirectToRoute('category_index', [], Response::HTTP_SEE_OTHER);
         }
