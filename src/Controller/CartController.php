@@ -22,7 +22,8 @@ class CartController extends AbstractController
             $products = [];
             return $this->render('cart/index.html.twig', ['products' => $products, 'cart' => $this]);   /*
         } else {
-            header("Location: /");
+            return $this->render('login/index.html.twig', ['products' => $products, 'cart' => $this]);   /*
+            //header("Location: /");
         }*/
     }
 /*
@@ -42,16 +43,16 @@ class CartController extends AbstractController
         $cartManager->updateValidateCart($cartId);
         header("Location: /book");
     }
-
+*/
     public function addProductToCart(int $id): void
     {
-        if (!is_null($this->user)) {
+        //if (!is_null($this->user)) {
             $cartManager = new CartManager();
             $cartId = $cartManager->getCartId($this->user["id"]);
             $cartManager->addProductToCart($cartId, $id);
             header("Location: /cart");
-        } else {
+        /*} else {
             header("Location: /");
-        }
-    }*/
+        } */
+    }
 }
