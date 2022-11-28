@@ -14,6 +14,7 @@
         {{ encore_entry_link_tags('login') }}
         {{ encore_entry_link_tags('button') }}
         {{ encore_entry_link_tags('utils') }}
+        {{ encore_entry_link_tags('footer') }}
 
         {% block stylesheets %}
         {% endblock %}
@@ -26,5 +27,6 @@
     <body>
     {% include "nav.html.twig" %}
         {% block body %}{% endblock %}
+    {% include "footer.html.twig" %}
     </body>
 </html>
