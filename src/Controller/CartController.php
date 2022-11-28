@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Controller\HomeController;
+
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -9,22 +11,33 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Repository\CartRepository;
 use App\Entity\Cart;
 use App\Entity\User;
+use App\Entity\Product;
 
 #[Route('/cart', name: 'cart_')]
 class CartController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(): Response
+    public function index(CartRepository $cartRepository): Response
     {
-        //if (!is_null($this->user)) {
-            //$product = new Product();
-            //$products = $product->selectProductInCart($this->user['id']);
+        $cartCurrent = new Cart();
+        if ($this->getUser()) {
             $products = [];
-            return $this->render('cart/index.html.twig', ['products' => $products, 'cart' => $this]);   /*
+            foreach ($this->getUser()->getCarts() as $cart) {
+                if (!$cart->isValidated()) {                    
+                    foreach ($cart->getProducts() as $product) {                        
+                        if ($product->getStatusSold() == 'en panier') {
+                            $products[] = $product;
+                            $cartCurrent = $cart;
+                        }
+                    }
+                }
+            }
+                        
+            return $this->render('cart/index.html.twig', 
+            ['products' => $products, 'cart' => $cartCurrent]);   
         } else {
-            return $this->render('login/index.html.twig', ['products' => $products, 'cart' => $this]);   /*
-            //header("Location: /");
-        }*/
+            
+        }
     }
 /*
     public function deleteOneProduct(int $productId)
