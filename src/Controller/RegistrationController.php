@@ -27,10 +27,10 @@ class RegistrationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // var_dump($_FILES);
             // die;
-            $uploadDir = 'uploads/';
-            $uploadFilePhoto = $uploadDir . basename($_FILES['registration_form']['name']['photo']);
-            $user->setPhoto($uploadFilePhoto);
-            move_uploaded_file($_FILES['registration_form']['name']['photo'], $uploadFilePhoto);
+            // $uploadDir = 'uploads/';
+            // $uploadFilePhoto = $uploadDir . basename($_FILES['registration_form']['name']['photo']);
+            // $user->setPhoto($uploadFilePhoto);
+            // move_uploaded_file($_FILES['registration_form']['name']['photo'], $uploadFilePhoto);
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(

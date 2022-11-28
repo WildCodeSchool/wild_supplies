@@ -42,23 +42,23 @@ class RegistrationFormType extends AbstractType
             ->add('firstname')
             ->add('lastname')
             ->add('phone_number')
-            ->add('photo', FileType::class, [
-                'label' => 'photo',
-                'mapped' => false,
-                'required' => false,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '1024k',
-                        'mimeTypes' => ['image/png', 'image/jpg', 'image/jpeg'],
-                        'mimeTypesMessage' => 'Please upload a valid image',
-                    ])
-                ],
+            // ->add('photo', FileType::class, [
+            //     'label' => 'photo',
+            //     'mapped' => false,
+            //     'required' => false,
+            //     'constraints' => [
+            //         new File([
+            //             'maxSize' => '1024k',
+            //             'mimeTypes' => ['image/png', 'image/jpg', 'image/jpeg'],
+            //             'mimeTypesMessage' => 'Please upload a valid image',
+            //         ])
+            //     ],
+            // ]);
+            ->add('photoFile', VichFileType::class, [
+                'required'      => false,
+                'allow_delete'  => true, // not mandatory, default is true
+                'download_uri' => true, // not mandatory, default is true
             ]);
-        // ->add('photoFile', VichFileType::class, [
-        //     'required'      => false,
-        //     'allow_delete'  => true, // not mandatory, default is true
-        //     'download_uri' => true, // not mandatory, default is true
-        // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
