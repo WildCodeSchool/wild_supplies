@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Controller\HomeController;
-
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,8 +22,8 @@ class CartController extends AbstractController
         if ($this->getUser()) {
             $products = [];
             foreach ($this->getUser()->getCarts() as $cart) {
-                if (!$cart->isValidated()) {                    
-                    foreach ($cart->getProducts() as $product) {                        
+                if (!$cart->isValidated()) {
+                    foreach ($cart->getProducts() as $product) {
                         if ($product->getStatusSold() == 'en panier') {
                             $products[] = $product;
                             $cartCurrent = $cart;
@@ -32,11 +31,11 @@ class CartController extends AbstractController
                     }
                 }
             }
-                        
-            return $this->render('cart/index.html.twig', 
-            ['products' => $products, 'cart' => $cartCurrent]);   
+            return $this->render('cart/index.html.twig',
+            ['products' => $products, 'cart' => $cartCurrent]
+        );
         } else {
-            
+            return $this->render('/index.html.twig');
         }
     }
 /*
