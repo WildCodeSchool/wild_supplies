@@ -5,6 +5,13 @@
 {% block title %}Accueil
 {% endblock %}
 
+{% block stylesheets %}
+	{{ encore_entry_link_tags('productCard') }}
+	{{ encore_entry_link_tags('form_products') }}
+	{{ encore_entry_link_tags('home') }}
+
+{% endblock %}
+
 {% block body %}
 	<main class="home">
 		<section class="carouselContainer">
