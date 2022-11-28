@@ -27,7 +27,7 @@ class ProductType extends AbstractType
                 'allow_delete'  => true, // not mandatory, default is true
                 'download_uri' => true, // not mandatory, default is true
 
-    ])
+        ])
             ->add('statusSold', TextType::class)
             ->add('material', ChoiceType::class, [
                 'choices'  =>
