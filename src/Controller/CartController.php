@@ -19,9 +19,10 @@ class CartController extends AbstractController
     public function index(CartRepository $cartRepository): Response
     {
         $cartCurrent = new Cart();
-        if ($this->getUser()) {
+        $user = $this->getUser();
+        if ($user) {
             $products = [];
-            foreach ($this->getUser()->getCarts() as $cart) {
+            foreach ($user->getCarts() as $cart) {
                 if (!$cart->isValidated()) {
                     foreach ($cart->getProducts() as $product) {
                         if ($product->getStatusSold() == 'en panier') {
@@ -38,34 +39,5 @@ class CartController extends AbstractController
         } else {
             return $this->render('/index.html.twig');
         }
-    }
-/*
-    public function deleteOneProduct(int $productId)
-    {
-        $productManager = new ProductManager();
-        $product = $productManager->selectOneById($productId);
-        $productManager->deleteProductInCart($product);
-        header("Location: /cart");
-    }
-
-    public function valideCart(int $cartId)
-    {
-        $productManager = new ProductManager();
-        $productManager->updateProductsFromCartToSold($cartId);
-        $cartManager = new CartManager();
-        $cartManager->updateValidateCart($cartId);
-        header("Location: /book");
-    }
-*/
-    public function addProductToCart(int $id): void
-    {
-        //if (!is_null($this->user)) {
-            $cartManager = new CartManager();
-            $cartId = $cartManager->getCartId($this->user["id"]);
-            $cartManager->addProductToCart($cartId, $id);
-            header("Location: /cart");
-        /*} else {
-            header("Location: /");
-        } */
     }
 }
