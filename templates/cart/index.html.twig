@@ -16,7 +16,7 @@
 				{% for product in products %}
 					<li class="products-cart">
 						{{ productCard(product) }}
-						<a href="/cart/update?id={{ product.id }}" class="deleteFromCart">
+						<a href="{#/cart/update?id={{ product.id }}#}" class="deleteFromCart">
 							Supprimer
 						</a>
 					</li>
@@ -29,7 +29,7 @@
 					{{ total }}
 				€</h2>
 				<div class="btn-cart">
-					{#<a href="/cart/valide?id={{cart[0].cart_id}}" class="btn-primary-validate-cart">#}
+					<a href="{#/cart/valide?id={{cart[0].id}} #}" class="btn-primary-validate-cart">
 						Valider
 					</a>
 				</div>
