@@ -35,7 +35,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             ["#ffffff", "#3d3846"],
             'Correct',
             'user_Jean',
-            
+
         ],
         [
             'Cafetiére',
