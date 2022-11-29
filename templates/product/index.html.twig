@@ -1,41 +1,55 @@
 {% extends 'base.html.twig' %}
+{% block stylesheet %}
+	{{ encore_entry_link_tags('productCard') }}
+{% endblock %}
 
 {% block title %}
 	Page produits -
 	{{ parent() }}
 {% endblock %}
 
-{% block content %}
-	<main class="container">
+{% block body %}
+	<main>
 		<h1>
 			Tous les produits :
 		</h1>
 
-
 		{% if products is not empty %}
 			{% for product in products %}
-				<a href="{{ path('products_show', {id: product.id}) }}">
+				<article class="productCard" onload="productCard.onload(this)">
+					<a href="{{ path('products_show', {id: product.id}) }}">
+						<div class="imageContainer">
+							<div class="image" style="background-image: url({{ asset(pathImages ~ product.photo[0]) }});"></div>
+						</div>
+						<div class="content">
+							<div>
+								<div>
+									<div class="seller">
+										<p class="label">Vendu par</p>
+										<div class="user">
+											<div class="avatar" style="background-image: url({{ asset(product.user.photo) }});"></div>
+											<p class="pseudo">
+												{{ product.user.pseudo }}
+											</p>
+										</div>
+									</div>
+								</div>
 
-					<img src="{{ asset(pathImages ~ product.photo[0]) }}" alt=""/>
+							</div>
+							<div>
+								<h2 class="title">{{ product.title }}</h2>
+								<p class="price">{{ product.price ~ " €" }}</p>
+							</div>
+						</div>
+					</a>
+				</article>
 
-					<div class="content">
-
-						<h2 class="title">{{ product.title }}</h2>
-						<p class="description">{{ product.description }}</p>
-						<p class="price">{{ product.price }}</p>
-						<p class="user">{{ product.user.pseudo }}</p>
-						<img src="{{product.user.photo}}"/>
-					</div>
-				</a>
 
 			{% endfor %}
 
 		{% else %}
 			Aucun produit trouvés.
-
 		{% endif %}
-	</main>
-{% endblock %}
-{% block javascript %}
-	<script src="/assets/js/products.js"></script>
-{% endblock %}
+	</div>
+</main>{% endblock %}{% block javascript %}
+<script src="/assets/js/products.js"></script>{% endblock %}

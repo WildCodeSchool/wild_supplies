@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
-#[Vich\Uploadable]
+#[Vich\Uploadable] 
 class Product
 {
     #[ORM\Id]
@@ -26,11 +26,8 @@ class Product
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(type: 'json')]
+    #[ORM\Column]
     private array $photo = [];
-
-    /*#[Vich\UploadableField(mapping: 'photo_file', fileNameProperty: 'photo')]
-     private File $photoFile;*/
 
     #[ORM\Column(length: 255)]
     private ?string $statusSold = "en vente";
@@ -251,23 +248,4 @@ class Product
 
         return $this;
     }
-
-   /* public function setPhotoFile(File $image = null): Program
-
-    {
-
-        $this->photoFile = $image;
-
-        return $this;
-
-    }
-
-
-    public function getPhotorFile(): ?File
-
-    {
-
-        return $this->photoFile;
-
-    }*/
 }

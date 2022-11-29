@@ -1,22 +1,21 @@
-{% extends 'base.html.twig' %}
-{% from "_macros/ratingStars.html.twig" import ratingStars %}
-
-{% block title %}
-	Page produit -
-	{{ parent() }}
+{% block stylesheet %}
+	{{ encore_entry_link_tags('productCard') }}
+	{{ encore_entry_link_tags('products') }}
+	{{ encore_entry_link_tags('show') }}
+	{{ encore_entry_link_tags('utils') }}
+	{{ encore_entry_link_tags('ratingStars') }}
 {% endblock %}
 
 {% block content %}
 	<main class="container">
 
 		{% if product is not empty %}
-			{% for photo in product.photo %}
-				<img src="{{ asset(pathImages ~ photo) }}" alt=""/>
-			{% endfor %}
+			<img class="photo" src="{{ asset(pathImages ~ product.photo[0]) }}" alt=""/>
+
 
 			<div class="info-product">
 
-				<h1 class="title">{{ product.title }}</h1>
+				<h2 class="title">{{ product.title }}</h2>
 				<ul>
 					<li class="productColor">
 						<p class="ImportanText">Couleur:
@@ -83,7 +82,7 @@
 					</p>
 					<div class="productIcons">
 						<div class="productIconsChild">
-							<img src="{{product.categoryItem.logo}}" alt="type icon">
+							<img src="{{ asset(pathImages ~ product.categoryItem.logo)}};" alt="type icon">
 							<p>{{product.categoryItem.title}}</p>
 						</div>
 					</div>
@@ -157,7 +156,7 @@
 					<div class="productSellerRating">
 						<p class="ImportanText">Note:
 						</p>
-						{{ratingStars(product.user.rating)}}
+
 					</div>
 				</div>
 

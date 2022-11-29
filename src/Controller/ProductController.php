@@ -49,7 +49,7 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
         $product->setDate(new DateTime());
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $productRepository->save($product, true);
         }
 
