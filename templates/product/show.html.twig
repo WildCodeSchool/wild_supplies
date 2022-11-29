@@ -10,7 +10,7 @@
 	<main class="container">
 
 		{% if product is not empty %}
-			<img class="photo" src="{{ asset(pathImages ~ product.photo[0]) }}" alt=""/>
+			<img class="photo" src="{{ asset(pathImages ~ product.photo) }}" alt=""/>
 
 
 			<div class="info-product">
@@ -82,7 +82,7 @@
 					</p>
 					<div class="productIcons">
 						<div class="productIconsChild">
-							<img src="{{ asset(pathImages ~ product.categoryItem.logo)}};" alt="type icon">
+							<img src="{{ asset(pathImages ~ product.categoryItem.photo)}};" alt="type icon">
 							<p>{{product.categoryItem.title}}</p>
 						</div>
 					</div>

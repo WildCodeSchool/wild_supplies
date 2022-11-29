@@ -30,7 +30,7 @@ class Product
     private ?string $description = null;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private ?string $photo;
+    private ?string $photo = null;
 
     #[Vich\UploadableField(mapping: 'photo_file', fileNameProperty: 'photo')]
     #[Assert\File(
