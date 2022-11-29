@@ -23,6 +23,11 @@ class ProductType extends AbstractType
             ->add('price', IntegerType::class)
             ->add('description', TextType::class)
             ->add('statusSold', TextType::class)
+            ->add('photoFile', VichFileType::class, [
+                'required'      => false,
+                'allow_delete'  => true, // not mandatory, default is true
+                'download_uri' => true, // not mandatory, default is true
+        ])
             ->add('material', ChoiceType::class, [
                 'choices'  =>
                 [

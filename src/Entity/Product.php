@@ -26,8 +26,22 @@ class Product
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column]
-    private array $photo = [];
+    #[ORM\Column(type: 'string', length: 255)]
+    private string $photo;
+
+
+    // On va créer un nouvel attribut à notre entité, qui ne sera pas lié à une colonne
+
+    // Tu peux d’ailleurs voir que l’attribut ORM column n’est pas spécifiée car
+
+    // On ne rajoute pas de données de type file en bdd
+
+    #[Vich\UploadableField(mapping: 'photo_file', fileNameProperty: 'photo')]
+    #[Assert\File(
+        maxSize: '1M',
+        mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
+    )]
+    private File $photoFile;
 
     #[ORM\Column(length: 255)]
     private ?string $statusSold = "en vente";
@@ -37,6 +51,9 @@ class Product
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
+
+    #[ORM\Column(type: 'datetime')]
+    private ?\DateTimeInterface $updatedAt = null;
 
     #[ORM\Column]
     private array $categoryRoom = [];
@@ -105,12 +122,12 @@ class Product
         return $this;
     }
 
-    public function getPhoto(): array
+    public function getPhoto(): string
     {
         return $this->photo;
     }
 
-    public function setPhoto(array $photo): self
+    public function setPhoto(string $photo): self
     {
         $this->photo = $photo;
 
@@ -245,6 +262,40 @@ class Product
     public function setCart(?Cart $cart): self
     {
         $this->cart = $cart;
+
+        return $this;
+    }
+
+    public function setPhotoFile(File $image = null): Product
+    {
+        $this->photoFile = $image;
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+        }
+    }
+
+
+    public function getphotoFile(): ?File
+    {
+        return $this->photoFile;
+    }
+
+/**
+ * Get the value of updatedAt
+ */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+/**
+ * Set the value of updatedAt
+ *
+ * @return  self
+ */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
