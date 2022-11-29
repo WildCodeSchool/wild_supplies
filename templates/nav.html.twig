@@ -75,8 +75,13 @@
 			<ul>
 				<li><a href="/products/add"><img src="{{ pathImages }}Vector.png" alt="add logo"></a></li>
 				<li><a href="/book"><img src="{{ pathImages }}carnet.png" alt="book logo"></a></li>
+<<<<<<< HEAD
+				<li><a href="/cart"><img src="/{{ pathImages }}panier.png" alt="cart logo">{% if app.user.carts|length > 0 %}<div class="cartNbrMobile">{{app.user.carts|length}}</div>{% endif %}</a></li>
+				<li><a href="/logout"><img src="/{{ pathSvg }}logout.svg" alt="logout logo"></a></li>
+=======
 				{# <li><a href="/cart"><img src="{{ pathImages }}panier.png" alt="cart logo">{% if app.user.cart|length > 0 %}<div class="cartNbrMobile">{{app.user.cart|length}}</div>{% endif %}</a></li> #}
 				<li><a href="/logout"><img src="{{ pathSvg }}logout.svg" alt="logout logo"></a></li>
+>>>>>>> dev
 			</ul>
 		</div>
 	{% endif %}
