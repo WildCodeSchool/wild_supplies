@@ -87,7 +87,8 @@
 				{% if not (products is empty) %}
 					<div class="products">
 						{% for product in products %}
-							{{ productCard(product) }}
+						{{dump(product.user.pseudo)}}
+							{# productCard(product) #}
 						{% endfor %}
 					</div>
 				{% else %}

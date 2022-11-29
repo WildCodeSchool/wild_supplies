@@ -20,7 +20,7 @@ class CartController extends BaseController
     {
         $cartCurrent = new Cart();
         $user = $this->getUser();
-        if ($user->getId()) {
+        if ($user && $user->getId()) {
             $products = [];
             foreach ($user->getCarts() as $cart) {
                 if (!$cart->isValidated()) {
@@ -37,7 +37,7 @@ class CartController extends BaseController
                 ['products' => $products, 'cart' => $cartCurrent]
             );
         } else {
-            return $this->render('/index.html.twig');
+            return $this->redirect('/');
         }
     }
 }
