@@ -29,7 +29,6 @@
 						</p>
 						<div class="productIcons">
 							{% for material in product.material %}
-								<!--Optimisation: nouvelle table dans bdd-->
 								<div class="productIconsChild">
 									{% if (material is same as("Bois")) %}
 										<img src="{{ asset(pathImages ~ 'bois.png') }}" alt="matter icon"/>
@@ -92,7 +91,6 @@
 					</p>
 					<div class="productIcons">
 						{% for category in product.categoryRoom %}
-							<!--Optimisation: nouvelle table dans bdd-->
 							<div class="productIconsChild">
 								{% if (category is same as("Bureau")) %}
 									<img src="{{ asset(pathImages ~ 'desk.png') }}" alt="matter icon"/>
@@ -127,14 +125,11 @@
 
 			<div class="productAddToCart">
 				{% if product.user is null %}
-					<!--Add a condition to render visible the error message only when the button iś clicked-->
 					<a class="productAddButton" href="/signup">Créer un compte</a>
 					<p>Veuillez d'abord vous connecter ou vous créer un compte pour avoir accès à votre panier</p>
 				</div>
 
-				<div
-					class="productSeller">
-					<!-- Add if conditions to display infos when the database has been changed -->
+				<div class="productSeller">
 					<div class="productSellerPseudo">
 						<p class="ImportanText">Vendu par:
 						</p>

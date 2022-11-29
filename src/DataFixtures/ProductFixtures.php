@@ -196,10 +196,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
     ];
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
         foreach (self::PRODUCTS as $value) {
-            # code...
             $product = new Product();
             $product->setTitle($value[0]);
             $product->setPrice($value[1]);
@@ -221,7 +218,6 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
 
     public function getDependencies()
     {
-        // Tu retournes ici toutes les classes de fixtures dont ProgramFixtures dépend
         return [
             CategoryItemFixtures::class,
         ];

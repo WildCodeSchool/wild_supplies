@@ -43,7 +43,6 @@ class ProductController extends AbstractController
     {
 
         $product = new Product();
-             // Create the form, linked with $category
 
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
@@ -52,9 +51,6 @@ class ProductController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $productRepository->save($product, true);
         }
-
-
-        // Render the form (best practice)
 
         return $this->renderForm('product/add.html.twig', [
 
