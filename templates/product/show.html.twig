@@ -165,6 +165,9 @@
 			{% endif %}
 		</main>
 	{% endif %}
+
+	<a href="{{ path('products_index_edit', {'id': product.id}) }}">edit</a>
+
 {% endblock %}
 
 {% block javascript %}

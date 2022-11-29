@@ -58,4 +58,31 @@ class ProductController extends AbstractController
 
         ]);
     }
+
+    #[Route('/{id}/edit', name: 'index_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Product $product, ProductRepository $productRepository): Response
+    {
+        $form = $this->createForm(ProductType::class, $product);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $productRepository->save($product, true);
+
+            return $this->redirectToRoute('products_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('product/edit.html.twig', [
+            'product' => $product,
+            'form' => $form,
+        ]);
+    }
+    #[Route('/{id}', name: 'index_delete', methods: ['POST'])]
+    public function delete(Request $request, Product $product, ProductRepository $productRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
+            $productRepository->remove($product, true);
+        }
+
+        return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
+    }
 }
