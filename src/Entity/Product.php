@@ -7,6 +7,9 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+use DateTime;
+use DateTimeInterface;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 #[Vich\Uploadable]
@@ -27,21 +30,14 @@ class Product
     private ?string $description = null;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private string $photo;
-
-
-    // On va créer un nouvel attribut à notre entité, qui ne sera pas lié à une colonne
-
-    // Tu peux d’ailleurs voir que l’attribut ORM column n’est pas spécifiée car
-
-    // On ne rajoute pas de données de type file en bdd
+    private ?string $photo;
 
     #[Vich\UploadableField(mapping: 'photo_file', fileNameProperty: 'photo')]
     #[Assert\File(
         maxSize: '1M',
         mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
     )]
-    private File $photoFile;
+    private ?File $photoFile = null;
 
     #[ORM\Column(length: 255)]
     private ?string $statusSold = "en vente";
@@ -122,7 +118,7 @@ class Product
         return $this;
     }
 
-    public function getPhoto(): string
+    public function getPhoto(): ?string
     {
         return $this->photo;
     }
@@ -266,10 +262,10 @@ class Product
         return $this;
     }
 
-    public function setPhotoFile(File $image = null): Product
+    public function setPhotoFile(?File $image = null): void
     {
         $this->photoFile = $image;
-        if ($image) {
+        if (null !== $image) {
             $this->updatedAt = new DateTime('now');
         }
     }
@@ -283,7 +279,7 @@ class Product
 /**
  * Get the value of updatedAt
  */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): DateTimeInterface|null
     {
         return $this->updatedAt;
     }
@@ -293,7 +289,7 @@ class Product
  *
  * @return  self
  */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt(DateTime $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
