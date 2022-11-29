@@ -3,21 +3,46 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
+
+<div class="loginFields">
     <h1>Register</h1>
-
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.pseudo) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
+    {{ form_start(registrationForm, {
+            attr: {'class': 'registrationForm'}
         }) }}
-        {{ form_row(registrationForm.adress) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.firstname) }}
-        {{ form_row(registrationForm.lastname) }}
-        {{ form_row(registrationForm.phone_number) }}
-        {{ form_row(registrationForm.photoFile) }}
+        {{ form_row(registrationForm.pseudo, {
+            label: 'Pseudo',
+            attr: {'class': 'form-control'}
+        }) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password',
+            attr: {'class': 'form-control'}
+        }) }}
+        {{ form_row(registrationForm.adress, {
+            label: 'Address',
+            attr: {'class': 'form-control'}
+        }) }}
+        {{ form_row(registrationForm.email, {
+            attr: {'class': 'form-control'}
+        }) }}
+
+        {{ form_row(registrationForm.firstname, {
+            label: 'Prénom',
+            attr: {'class': 'form-control'}
+        }) }}
+        {{ form_row(registrationForm.lastname, {
+            label: 'Nom',
+            attr: {'class': 'form-control'}
+        }) }}
+        {{ form_row(registrationForm.phone_number, {
+            label: 'Numéro de téléphone',
+            attr: {'class': 'form-control'}
+        }) }}
+        {{ form_row(registrationForm.photoFile, {
+            attr: {'class': 'form-control'}
+        }) }}
+        <button type="submit" class="centerButton btn btn-lg btn-primary">Register</button>
+</div>
 
 
-        <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}
 {% endblock %}
