@@ -14,7 +14,6 @@
 
 {% block body %}
 	<main class="home">
-    {{ dump(app.user) }}
 		<section class="carouselContainer">
 			{% if app.user is null %}
 				<a href="/signup" class="btn btn-primary-banner">
