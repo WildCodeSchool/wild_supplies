@@ -1,35 +1,42 @@
 {% extends 'base.html.twig' %}
 
 {% from "_macros/productCard.html.twig" import productCard %}
-
-{% block content %}
+{% block stylesheets %}
+	{{ encore_entry_link_tags('cart') }}
+	{{ encore_entry_link_tags('products') }}
+	{{ encore_entry_link_tags('productCard') }}
+{% endblock %}
+        
+{% block body %}
 	<main class="cart container">
 		<h1 class="text-center">Mon Panier</h1>
-		<ul class="productsCart">
-			{% if not (products is empty) %}
+		{% if products is not empty %}
+			<ul class="productsCart">			
+				{% set total = 0 %}
 				{% for product in products %}
 					<li class="products-cart">
 						{{ productCard(product) }}
-						<a href="/cart/update?id={{ product.id }}" class="deleteFromCart">
+						<a href="{#/cart/update?id={{ product.id }}#}" class="deleteFromCart">
 							Supprimer
 						</a>
 					</li>
 				{% endfor %}
+			</ul>
 				{% for product in products %}
 					{% set total = total + product.price %}
 				{% endfor %}
 				<h2 class="totalCart">Total du panier:
-					{{total}}
+					{{ total }}
 				€</h2>
 				<div class="btn-cart">
-					<a href="/cart/valide?id={{cart[0].cart_id}}" class="btn-primary-validate-cart">
+					<a href="{#/cart/valide?id={{cart[0].id}} #}" class="btn-primary-validate-cart">
 						Valider
 					</a>
 				</div>
 			{% else %}
 				<h2>--Votre Panier est vide--</h2>
 			{% endif %}
-		</ul>
+		
 		{% set total = 0  %}		
 	</main>
 {% endblock %}
