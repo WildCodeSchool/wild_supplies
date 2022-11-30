@@ -15,6 +15,20 @@
     z-index: 10;
 }
 
+.registrationForm {
+    display: flex;
+    flex-direction: column;
+
+    label {
+        display: block;
+    }
+
+    input {
+        //width: 60%;
+        margin-bottom: 1em;
+    }
+}
+
 .loginPrompt.showed,
 .logoutPrompt.showed {
     top: 65px;
@@ -31,6 +45,21 @@
     width: 100%;
 }
 
+.loginPrompt .loginLinks {
+    display: contents;
+}
+
+.loginFields {
+    max-width: 60%;
+    padding: 1em;
+    margin: 1em auto;
+}
+
+.centerButton {
+    min-width: 100px;
+    margin: 1em auto;
+}
+
 @media screen and (max-width: 767.98px) {
     .loginPrompt {
         top: 65px;
@@ -40,5 +69,11 @@
 
     .loginPrompt.showed {
         left: calc(50vw - 350px / 2);
+    }
+
+    .loginFields {
+        max-width: 80%;
+        padding: 1em;
+        margin: 1em auto;
     }
 }

@@ -9,9 +9,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+use DateTime;
+use DateTimeInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['pseudo'], message: 'There is already an account with this pseudo')]
+#[Vich\Uploadable]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -49,8 +55,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $photo = null;
 
-    // #[Vich\UploadableField(mapping: 'profile_picture', fileNameProperty: 'photo')]
-    // private File $photoFile;
+    #[Vich\UploadableField(mapping: 'profile_picture', fileNameProperty: 'photo'),]
+    #[Assert\File(
+        maxSize: '1M',
+        mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
+    )]
+    private ?File $photoFile = null;
+
+    #[ORM\Column(type: 'datetime')]
+    private ?DateTimeInterface $updatedAt;
 
     #[ORM\Column]
     private ?int $rating = 5;
@@ -222,16 +235,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    // public function setPhotoFile(File $image = null): User
-    // {
-    //     $this->photoFile = $image;
-    //     return $this;
-    // }
+    public function setPhotoFile(?File $image = null): void
+    {
+        $this->photoFile = $image;
 
-    // public function getPhotoFile(): ?File
-    // {
-    //     return $this->photoFile;
-    // }
+        if (null !== $image) {
+            $this->updatedAt = new DateTime();
+        }
+    }
+
+    public function getPhotoFile(): ?File
+    {
+        return $this->photoFile;
+    }
+
     /**
      * @return Collection<int, Cart>
      */
@@ -288,6 +305,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $product->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * Get the value of updatedAt
+     */
+    public function getUpdatedAt(): DateTimeInterface|null
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set the value of updatedAt
+     *
+     * @return  self
+     */
+    public function setUpdatedAt(DateTime $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
