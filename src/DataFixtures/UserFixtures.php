@@ -5,9 +5,13 @@ namespace App\DataFixtures;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends Fixture
 {
+    public function __construct(private UserPasswordHasherInterface $hasher)
+    {
+    }
     public const USERS = [
         [
             'azertySteeve',
@@ -29,7 +33,7 @@ class UserFixtures extends Fixture
             'pierre@gmail.com',
             '0608070909',
             'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by' .
-            '1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2960&q=80',
+                '1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2960&q=80',
             []
         ],
         [
@@ -53,7 +57,7 @@ class UserFixtures extends Fixture
             'marie@gmail.com',
             '0608070910',
             'https://images.unsplash.com/photo-1563132337-f159f484226c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1w' .
-            'YWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+                'YWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
             []
         ]
     ];
@@ -65,7 +69,7 @@ class UserFixtures extends Fixture
         foreach (self::USERS as $value) {
             # code...
             $user = new User();
-            $user->setPassword($value[0]);
+            $user->setPassword($this->hasher->hashPassword($user, $value[0]));
             $user->setPseudo($value[1]);
             $user->setLastname($value[2]);
             $user->setFirstname($value[3]);

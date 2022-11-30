@@ -20,6 +20,7 @@
 				<a href="/book"><img src="/{{ pathImages }}carnet.png"></a>
 			</li>
 			<li>
+
 				<a href="/cart"><img src="{{ pathImages }}panier.png">
                     {% for cart in app.user.carts %}
                         {% if (cart.validated == false) and (cart|length > 0) %}
@@ -31,7 +32,7 @@
 				</a>
 			</li>
 			<li>
-				<a class="loginButton">/{{ userAvatar(app.user.photo) }}</a>
+				<a class="loginButton">{{ userAvatar(app.user.photo) }}</a>
 			</li>
 		{% else %}
 			<li>
@@ -56,8 +57,6 @@
 		{% for index, category in categoryItems.selectAllInCarousel %}
 			<li>
 				<a href="/products?category={{ category.id }}">
-					{# <img src="{{ asset(category.logo) }}"/> #}
-          {# <img src="/{{constant('App\\Service\GlobalService::PATH_IMAGES{{category.logo}}" alt=""> #}
           <img src="/{{pathImages ~ category.logo}}" alt="cisao">
 					<p>{{ category.title }}</p>
 				</a>
@@ -75,13 +74,16 @@
 			<ul>
 				<li><a href="/products/add"><img src="{{ pathImages }}Vector.png" alt="add logo"></a></li>
 				<li><a href="/book"><img src="{{ pathImages }}carnet.png" alt="book logo"></a></li>
-<<<<<<< HEAD
-				<li><a href="/cart"><img src="/{{ pathImages }}panier.png" alt="cart logo">{% if app.user.carts|length > 0 %}<div class="cartNbrMobile">{{app.user.carts|length}}</div>{% endif %}</a></li>
+				<li><a href="/cart"><img src="{{ pathImages }}panier.png" alt="cart logo">
+        {% for cart in app.user.carts %}
+                        {% if (cart.validated == false) and (cart|length > 0) %}
+                        <div class="cartNbr">
+                            {{cart|length}}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+        </a></li>
 				<li><a href="/logout"><img src="/{{ pathSvg }}logout.svg" alt="logout logo"></a></li>
-=======
-				{# <li><a href="/cart"><img src="{{ pathImages }}panier.png" alt="cart logo">{% if app.user.cart|length > 0 %}<div class="cartNbrMobile">{{app.user.cart|length}}</div>{% endif %}</a></li> #}
-				<li><a href="/logout"><img src="{{ pathSvg }}logout.svg" alt="logout logo"></a></li>
->>>>>>> dev
 			</ul>
 		</div>
 	{% endif %}
