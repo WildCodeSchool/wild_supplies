@@ -25,8 +25,8 @@ class ProductType extends AbstractType
             ->add('statusSold', TextType::class)
             ->add('photoFile', VichFileType::class, [
                 'required'      => false,
-                'allow_delete'  => true, // not mandatory, default is true
-                'download_uri' => true, // not mandatory, default is true
+                'allow_delete'  => false, // not mandatory, default is true
+                'download_uri' => false, // not mandatory, default is true
         ])
             ->add('material', ChoiceType::class, [
                 'choices'  =>

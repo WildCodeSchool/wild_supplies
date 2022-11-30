@@ -1,9 +1,16 @@
 /* Product Card Container */
+.flex_article {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
 .productCardContainer {
     display: flex;
     justify-content: center;
 }
-
 
 .productCardContainer>.products {
     display: flex;
@@ -39,6 +46,7 @@
 }
 
 @media screen and (max-width: 768px) {
+
     .productCardContainer>.products {
         padding: 0.25rem;
     }
@@ -161,6 +169,7 @@
 }
 
 @media screen and (max-width: 768px) {
+
     .productCard {
         margin: 0.4rem;
         width: 100%;

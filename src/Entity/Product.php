@@ -29,7 +29,7 @@ class Product
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable:true)]
     private ?string $photo = null;
 
     #[Vich\UploadableField(mapping: 'photo_file', fileNameProperty: 'photo')]

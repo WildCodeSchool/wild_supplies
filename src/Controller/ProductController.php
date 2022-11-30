@@ -20,7 +20,7 @@ class ProductController extends AbstractController
     #[Route('/', methods: ["GET"], name: 'index')]
     public function index(ProductRepository $productRepository): Response
     {
-        $products = $productRepository->findAll();
+        $products = $productRepository->selecteverything();
 
         return $this->render('product/index.html.twig', [
             'products' => $products
@@ -46,10 +46,11 @@ class ProductController extends AbstractController
 
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
-        $product->setDate(new DateTime());
+        $product->setDate(new DateTime('now'));
 
         if ($form->isSubmitted() && $form->isValid()) {
             $productRepository->save($product, true);
+            return $this->redirectToRoute('products_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('product/add.html.twig', [
@@ -65,7 +66,10 @@ class ProductController extends AbstractController
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $product->setDate(new DateTime('now'));
+         //   dd($product);
             $productRepository->save($product, true);
 
             return $this->redirectToRoute('products_index', [], Response::HTTP_SEE_OTHER);
@@ -83,6 +87,6 @@ class ProductController extends AbstractController
             $productRepository->remove($product, true);
         }
 
-        return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('products_index', [], Response::HTTP_SEE_OTHER);
     }
 }

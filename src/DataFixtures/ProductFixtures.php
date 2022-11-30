@@ -17,11 +17,11 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             'en vente',
             ["PVC", "Verre"],
             'category_Electromenager',
-
             ["Bureau", "Chambre", "Salon"],
             ["#000000", "#3d3846"],
             'Correct',
             'user_Jean',
+            "2022-02-03"
         ],
         [
             'Frigo',
@@ -35,6 +35,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             ["#ffffff", "#3d3846"],
             'Correct',
             'user_Jean',
+            "2022-02-03"
 
         ],
         [
@@ -48,7 +49,8 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             ["Cuisine"],
             ["#000000"],
             'Nouveau',
-            'user_Jean'
+            'user_Jean',
+            "2022-02-03"
         ],
         [
             'Micro onde',
@@ -61,7 +63,8 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             ["Cuisine"],
             ["#ffffff", "#000000"],
             'Correct',
-            'user_Marie'
+            'user_Marie',
+            "2022-02-03"
         ],
         [
             'Ecran 4:3',
@@ -74,7 +77,8 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             ["Bureau", "Salon"],
             ["#000000", "#5e5c64"],
             'Nouveau',
-            'user_Marie'
+            'user_Marie',
+            "2022-02-03"
         ],
         [
             'Une chaise noire',
@@ -87,7 +91,8 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             ["Bureau", "Cuisine", "Salle à manger", "Salon"],
             ["#000000"],
             'Correct',
-            'user_Marie'
+            'user_Marie',
+            "2022-02-03"
         ],
         [
             'Bureau',
@@ -100,7 +105,8 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             ["Bureau"],
             ["#3d3846", "#986a44"],
             'Nouveau',
-            'user_Pierre'
+            'user_Pierre',
+            "2022-02-03"
         ],
         [
             'Chaise bureau',
@@ -113,7 +119,8 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             ["Bureau"],
             ["#000000", "#241f31"],
             'Correct',
-            'user_Pierre'
+            'user_Pierre',
+            "2022-02-03"
         ],
         [
             'Chaise pliante',
@@ -126,7 +133,8 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             ["Salle à manger"],
             ["#ff7800"],
             'Correct',
-            'user_Pierre'
+            'user_Pierre',
+            "2022-02-03"
         ],
         [
             'Un néon',
@@ -138,7 +146,8 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             'category_Luminaires',
             ["Bureau", "Cuisine", "Salle à manger"],
             ["#ffffff"],
-            'Correct', 'user_Steeve'
+            'Correct', 'user_Steeve',
+            "2022-02-03"
         ],
         [
             'Table blanche',
@@ -151,7 +160,8 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             ["Bureau", "Salle à manger"],
             ["#deddda", "#ffbe6f"],
             'Usagé',
-            'user_Steeve'
+            'user_Steeve',
+            "2022-02-03"
         ],
         [
             'Tabouret qui tourne',
@@ -164,7 +174,8 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             ["Bureau", "Cuisine", "Salle à manger"],
             ["#62a0ea", "#ffffff"],
             'Correct',
-            'user_Steeve'
+            'user_Steeve',
+            "2022-02-03"
         ],
         [
             'Spot',
@@ -177,7 +188,8 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             ["Bureau", "Cuisine", "Salle à manger", "Salon"],
             ["#ffffff"],
             'Correct',
-            'user_Steeve'
+            'user_Steeve',
+            "2022-02-03"
         ],
         [
             'Tasse',
@@ -190,7 +202,8 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             ["Bureau", "Cuisine", "Salle à manger"],
             ["#ffffff", "#ff7800"],
             'Correct',
-            'user_Marie'
+            'user_Marie',
+            "2022-02-03"
         ]
 
     ];
@@ -209,6 +222,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $product->setColor($value[8]);
             $product->setState($value[9]);
             $product->setDate(new DateTime('now'));
+            $product->setUpdatedAt(new DateTime($value[11]));
             $product->setUser($this->getReference($value[10]));
             $manager->persist($product);
         }
