@@ -22,7 +22,7 @@ class ProductType extends AbstractType
             ->add('title', TextType::class)
             ->add('price', IntegerType::class)
             ->add('description', TextType::class)
-            ->add('statusSold', TextType::class)
+            // ->add('statusSold', TextType::class)
             ->add('photoFile', VichFileType::class, [
                 'required'      => false,
                 'allow_delete'  => false, // not mandatory, default is true
@@ -65,15 +65,15 @@ class ProductType extends AbstractType
             ->add('state', TextType::class)
             ->add('showPhoneUser', ChoiceType::class, [
                 'choices'  => [
-                    'Yes' => true,
-                    'No' => false,]])
+                    'Oui' => true,
+                    'Non' => false,]])
             ->add('showEmailUser', ChoiceType::class, [
                 'choices'  => [
-                    'Yes' => true,
-                    'No' => false,]])
-            ->add('user', null, ['choice_label' => 'pseudo'])
+                    'Oui' => true,
+                    'Non' => false,]])
+            // ->add('user', null, ['choice_label' => 'pseudo'])
             ->add('categoryItem', null, ['choice_label' => 'title'])
-            ->add('cart', null, ['choice_label' => 'id_user'])
+            // ->add('cart', null, ['choice_label' => 'id_user'])
         ;
     }
 

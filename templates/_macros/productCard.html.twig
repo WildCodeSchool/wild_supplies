@@ -38,10 +38,10 @@
 	{% from "_macros/ratingStars.html.twig" import ratingStars %}
 
 	<article class="productCard" onload="productCard.onload(this)">
-		<a href="/product?id={{product.id}}">
+		<a href="/products/show/{{product.id}}">
 			<div class="imageContainer">
 
-				<div class="image" style="background-image: url({{pathImages}}{{product.photo}});"></div>
+				<div class="image" style="background-image: url(/{{ vich_uploader_asset(product, 'photoFile') }});"></div>
 
 			</div>
 			<div class="content">
@@ -50,7 +50,7 @@
 						<div class="seller">
 							<p class="label">Vendu par</p>
 							<div class="user">
-								<div class="avatar" style="background-image: url({{ product.user.photo }});"></div>
+								<div class="avatar" style="background-image: url({{ vich_uploader_asset(product.user, 'photoFile') }});"></div>
 								<p class="pseudo">
 									{{ product.user.pseudo }}
 								</p>

@@ -142,11 +142,15 @@
 		</article>
 
 		<article class="productAddToCart">
+
 			{% if app.user is null %}
+
+
+
 				<!--Add a condition to render visible the error message only when the button iś clicked-->
-				<a class="productAddButton" href="/signup">Créer un compte</a>
+				<a class="productAddButton" href="/register">Créer un compte</a>
 				<p>Veuillez d'abord vous connecter ou vous créer un compte pour avoir accès à votre panier</p>
-			{% elseif product.user_id != user.id and product.status != 'en panier' %}
+			{% elseif product.user.id != app.user.id and product.statusSold != 'en panier' %}
 				<a class="productAddButton" href="/cart/add?id={{product.id}}">Ajouter au panier</a>
 			{% endif %}
 		</article>

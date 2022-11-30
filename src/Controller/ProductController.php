@@ -47,6 +47,7 @@ class ProductController extends AbstractController
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
         $product->setDate(new DateTime('now'));
+        // set user à user connecté
 
         if ($form->isSubmitted() && $form->isValid()) {
             $productRepository->save($product, true);

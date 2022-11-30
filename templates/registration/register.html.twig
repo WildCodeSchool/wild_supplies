@@ -4,8 +4,10 @@
 
 {% block body %}
 
+<main class="container">
+
 <div class="loginFields">
-    <h1>Register</h1>
+    <h1 class="text-center">Créer un compte</h1>
     {{ form_start(registrationForm, {
             attr: {'class': 'registrationForm'}
         }) }}
@@ -40,9 +42,10 @@
         {{ form_row(registrationForm.photoFile, {
             attr: {'class': 'form-control'}
         }) }}
-        <button type="submit" class="centerButton btn btn-lg btn-primary">Register</button>
+        <button type="submit" class="centerButton btn btn-lg btn-primary">Créer le compte</button>
 </div>
 
 
     {{ form_end(registrationForm) }}
+</main>
 {% endblock %}

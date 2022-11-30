@@ -2,11 +2,67 @@
 
 
 {% block body %}
-	{{ form_start(form) }}
+<main class="container">
+	{# {{ form_start(form) }}
 
 	{{ form_widget(form) }}
 
 	<button type="submit">Enregister produit</button>
 
-	{{ form_end(form) }}
+	{{ form_end(form) }} #}
+<h1 class="text-center">Ajouter un produit</h1>
+    {{ form_start(form, {
+            attr: {'class': 'form'}
+        }) }}
+        {{ form_row(form.title, {
+            label: 'titre',
+            attr: {'class': 'form-control'}
+        }) }}
+        {{ form_row(form.price, {
+            label: 'prix',
+            attr: {'class': 'form-control'}
+        }) }}
+        {{ form_row(form.description, {
+            label: 'description',
+            attr: {'class': 'form-control'}
+        }) }}
+        {{ form_row(form.photoFile, {
+            label: 'photo',
+            attr: {'class': 'form-control'}
+        }) }}
+
+        {{ form_row(form.material, {
+            label: 'Matériel',
+            attr: {'class': 'form-control'}
+        }) }}
+        {{ form_row(form.categoryRoom, {
+            label: 'Pour quelle Pièces ?',
+            attr: {'class': 'form-control'}
+        }) }}
+        {{ form_row(form.color, {
+            label: 'couleur',
+            attr: {'class': 'form-control'}
+        }) }}
+        {{ form_row(form.state, {
+            label: 'état',
+            attr: {'class': 'form-control'}
+        }) }}
+        {{ form_row(form.showPhoneUser, {
+            label: 'afficher votre numéro de téléphone',
+            attr: {'class': 'form-control'}
+        }) }}
+        {{ form_row(form.showEmailUser, {
+            label: 'afficher votre email',
+            attr: {'class': 'form-control'}
+        }) }}
+        {{ form_row(form.categoryItem, {
+            label: 'catégorie',
+            attr: {'class': 'form-control'}
+        }) }}
+        <button type="submit" class="centerButton btn btn-lg btn-primary">Ajouter</button>
+
+
+
+    {{ form_end(form) }}
+</main>
 {% endblock %}
