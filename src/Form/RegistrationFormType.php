@@ -5,6 +5,9 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
@@ -16,11 +19,16 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('pseudo')
+            ->add('pseudo', TextType::class, [
+                'attr' => [
+                    'placeholder' => 'Pseudo'
+                ]
+            ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
+                'empty_data' => 'password',
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
@@ -34,11 +42,11 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('adress')
-            ->add('email')
-            ->add('firstname')
-            ->add('lastname')
-            ->add('phone_number')
+            ->add('adress', TextType::class)
+            ->add('email', EmailType::class)
+            ->add('firstname', TextType::class)
+            ->add('lastname', TextType::class)
+            ->add('phone_number', NumberType::class)
             ->add('photoFile', VichFileType::class, [
                 'required'      => true,
                 'allow_delete'  => true, // not mandatory, default is true

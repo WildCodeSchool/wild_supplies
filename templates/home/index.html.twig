@@ -16,10 +16,11 @@
 	<main class="home">
 		<section class="carouselContainer">
 			{% if app.user is null %}
-				<a href="/signup" class="btn btn-primary-banner">
+				<a href="/register" class="btn btn-primary-banner">
 					Créer un compte
 				</a>
 			{% endif %}
+
 			<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
 				<ul class="carousel-indicators">
 					<li>
