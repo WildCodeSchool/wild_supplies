@@ -24,7 +24,8 @@ class ProductRepository extends ServiceEntityRepository
 
     public function save(Product $entity, bool $flush = false): void
     {
-        $this->getEntityManager()->persist($entity);
+            $this->getEntityManager()->persist($entity);
+
 
         if ($flush) {
             $this->getEntityManager()->flush();
@@ -48,6 +49,16 @@ class ProductRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function selecteverything(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.date', 'DESC')
+            ->orderBy('p.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
 
     //    /**
     //     * @return Program[] Returns an array of Program objects

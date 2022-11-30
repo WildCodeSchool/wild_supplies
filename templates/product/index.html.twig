@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+{% block stylesheet %}
+	{{ encore_entry_link_tags('productCard') }}
+{% endblock %}
+
+{% block title %}
+	Page produits -
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<main>
+		<div class="header">
+			<h1>
+				Tous les produits :
+			</h1>
+
+			<a class="addProduit" href="/products/add ">
+				Ajouter un nouveau produit :
+			</a>
+		</div>
+		{% if products is not empty %}
+			<div class="flex_article">
+				{% for product in products %}
+					<article class="productCard" onload="productCard.onload(this)">
+						<a href="{{ path('products_show', {id: product.id}) }}">
+							<div class="imageContainer">
+								<div class="image" style="background-image: url({{ asset(pathImages ~ product.photo) }});"></div>
+							</div>
+							<div class="content">
+								<div>
+									<div>
+										<div class="seller">
+											<p class="label">Vendu par</p>
+											<div class="user">
+												<div class="avatar" style="background-image: url({{ asset(product.user.photo) }});"></div>
+												<p class="pseudo">
+													{{ product.user.pseudo }}
+												</p>
+											</div>
+										</div>
+									</div>
+
+								</div>
+								<div>
+									<h2 class="title">{{ product.title }}</h2>
+									<p class="price">{{ product.price ~ " €" }}</p>
+								</div>
+							</div>
+						</a>
+					</article>
+				{% endfor %}
+			</div>
+
+
+		{% else %}
+			Aucun produit trouvés.
+		{% endif %}
+	</div>
+</main>{% endblock %}{% block javascript %}
+<script src="/assets/js/products.js"></script>{% endblock %}

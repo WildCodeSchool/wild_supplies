@@ -5,8 +5,14 @@ namespace App\Entity;
 use App\Repository\ProductRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+use DateTimeInterface;
+use DateTime;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
+#[Vich\Uploadable]
 class Product
 {
     #[ORM\Id]
@@ -23,8 +29,15 @@ class Product
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column]
-    private array $photo = [];
+    #[ORM\Column(type: 'string', length: 255, nullable:true)]
+    private ?string $photo = null;
+
+    #[Vich\UploadableField(mapping: 'photo_file', fileNameProperty: 'photo')]
+    #[Assert\File(
+        maxSize: '1M',
+        mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
+    )]
+    private ?File $photoFile = null;
 
     #[ORM\Column(length: 255)]
     private ?string $statusSold = "en vente";
@@ -34,6 +47,9 @@ class Product
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
+
+    #[ORM\Column(type: 'datetime')]
+    private ?\DateTimeInterface $updatedAt = null;
 
     #[ORM\Column]
     private array $categoryRoom = [];
@@ -102,12 +118,12 @@ class Product
         return $this;
     }
 
-    public function getPhoto(): array
+    public function getPhoto(): ?string
     {
         return $this->photo;
     }
 
-    public function setPhoto(array $photo): self
+    public function setPhoto(string $photo): self
     {
         $this->photo = $photo;
 
@@ -242,6 +258,40 @@ class Product
     public function setCart(?Cart $cart): self
     {
         $this->cart = $cart;
+
+        return $this;
+    }
+
+    public function setPhotoFile(?File $image = null): void
+    {
+        $this->photoFile = $image;
+        if (null !== $image) {
+            $this->updatedAt = new DateTime('now');
+        }
+    }
+
+
+    public function getphotoFile(): ?File
+    {
+        return $this->photoFile;
+    }
+
+/**
+ * Get the value of updatedAt
+ */
+    public function getUpdatedAt(): DateTimeInterface|null
+    {
+        return $this->updatedAt;
+    }
+
+/**
+ * Set the value of updatedAt
+ *
+ * @return  self
+ */
+    public function setUpdatedAt(DateTime $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
