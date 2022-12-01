@@ -13,7 +13,6 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 #[ORM\Entity(repositoryClass: CategoryItemRepository::class)]
 #[Vich\Uploadable]
 class CategoryItem
@@ -190,7 +189,7 @@ class CategoryItem
     /**
      * Get the value of updatedAt
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): DateTimeInterface|null
     {
         return $this->updatedAt;
     }
@@ -200,7 +199,7 @@ class CategoryItem
      *
      * @return  self
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt(DateTime $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 

@@ -88,50 +88,50 @@ class CategoryItemController extends AbstractController
     //     return $categoriesSelect;
     // }
 
-    public function edit(CategoryItemRepository $categoryRepository): Response
-    {
-        $category = $categoryRepository->find($id);
+    // public function edit(CategoryItemRepository $categoryRepository): Response
+    // {
+    //     $category = $categoryRepository->find($id);
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $uploadDir = 'uploads/';
-            // le nom de fichier sur le serveur est ici généré à partir du nom de fichier sur le poste du client
-            // (mais d'autre stratégies de nommage sont possibles)
-            $uploadFilePhoto = $uploadDir . basename($_FILES['photo']['name']);
-            $uploadFileLogo = $uploadDir . basename($_FILES['logo']['name']);
+    //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    //         $uploadDir = 'uploads/';
+    //         // le nom de fichier sur le serveur est ici généré à partir du nom de fichier sur le poste du client
+    //         // (mais d'autre stratégies de nommage sont possibles)
+    //         $uploadFilePhoto = $uploadDir . basename($_FILES['photo']['name']);
+    //         $uploadFileLogo = $uploadDir . basename($_FILES['logo']['name']);
 
-            $_POST['title'] =  ucfirst($_POST['title']);
-            $_POST['description'] = ucfirst($_POST['description']);
-            // clean $_POST data
-            $categoryItem = array_map('trim', $_POST);
+    //         $_POST['title'] =  ucfirst($_POST['title']);
+    //         $_POST['description'] = ucfirst($_POST['description']);
+    //         // clean $_POST data
+    //         $categoryItem = array_map('trim', $_POST);
 
-            // TODO validations (length, format...)
-            $errors = $this->checkdata($categoryItem);
+    //         // TODO validations (length, format...)
+    //         $errors = $this->checkdata($categoryItem);
 
-            //Add in categoryItem array the entry photo, logo and id for insertion
-            $categoryItem['photo'] = $uploadFilePhoto;
-            $categoryItem['logo'] = $uploadFileLogo;
-            $categoryItem['id'] = $_GET['id'];
+    //         //Add in categoryItem array the entry photo, logo and id for insertion
+    //         $categoryItem['photo'] = $uploadFilePhoto;
+    //         $categoryItem['logo'] = $uploadFileLogo;
+    //         $categoryItem['id'] = $_GET['id'];
 
 
-            // if validation is ok, insert and redirection
-            if (!empty($errors)) {
-                return $this->twig->render('CategoryItem/edit.html.twig', [
-                    "errors" => $errors,
-                    "categoryItem" => $categoryItem
-                ]);
-            } else {
-                move_uploaded_file($_FILES['photo']['tmp_name'], $uploadFilePhoto);
-                move_uploaded_file($_FILES['logo']['tmp_name'], $uploadFileLogo);
-                $categoryItemManager = new CategoryItemRepository();
-                $categoryItemManager->update($categoryItem);
-                header('Location:/categories_items');
-                return null;
-            }
-        }
+    //         // if validation is ok, insert and redirection
+    //         if (!empty($errors)) {
+    //             return $this->twig->render('CategoryItem/edit.html.twig', [
+    //                 "errors" => $errors,
+    //                 "categoryItem" => $categoryItem
+    //             ]);
+    //         } else {
+    //             move_uploaded_file($_FILES['photo']['tmp_name'], $uploadFilePhoto);
+    //             move_uploaded_file($_FILES['logo']['tmp_name'], $uploadFileLogo);
+    //             $categoryItemManager = new CategoryItemRepository();
+    //             $categoryItemManager->update($categoryItem);
+    //             header('Location:/categories_items');
+    //             return null;
+    //         }
+    //     }
 
-        return $this->twig->render('CategoryItem/edit.html.twig', [
-            "categoryItem" => $categoryItem
+    //     return $this->twig->render('CategoryItem/edit.html.twig', [
+    //         "categoryItem" => $categoryItem
 
-        ]);
-    }
+    //     ]);
+    // }
 }

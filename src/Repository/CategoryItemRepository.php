@@ -49,27 +49,27 @@ class CategoryItemRepository extends ServiceEntityRepository
     }
 
     // Clean categories in carousel from home page
-    public function updateNotIncarousel(): void
-    {
+    // public function updateNotIncarousel(): void
+    // {
 
-        $query = "UPDATE " . self::TABLE . " SET in_carousel = FALSE";
-        $statement = $this->pdo->prepare($query);
-        $statement->execute();
-    }
+    //     $query = "UPDATE " . self::TABLE . " SET in_carousel = FALSE";
+    //     $statement = $this->pdo->prepare($query);
+    //     $statement->execute();
+    // }
 
-    // Insert new categories in carousel from home page
-    public function updateIncarousel(array $array): void
-    {
-        $value = [];
-        foreach ($array as $item) {
-            $value[] = $item['id'];
-        }
+    // // Insert new categories in carousel from home page
+    // public function updateIncarousel(array $array): void
+    // {
+    //     $value = [];
+    //     foreach ($array as $item) {
+    //         $value[] = $item['id'];
+    //     }
 
-        $query = "UPDATE " . self::TABLE .
-            " SET in_carousel = TRUE WHERE id IN ($value[0], $value[1], $value[2], $value[3])";
-        $statement = $this->pdo->prepare($query);
-        $statement->execute();
-    }
+    //     $query = "UPDATE " . self::TABLE .
+    //         " SET in_carousel = TRUE WHERE id IN ($value[0], $value[1], $value[2], $value[3])";
+    //     $statement = $this->pdo->prepare($query);
+    //     $statement->execute();
+    // }
 
     //    /**
     //     * @return CategoryItem[] Returns an array of CategoryItem objects
