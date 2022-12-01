@@ -10,7 +10,7 @@ db-data
 /public/bundles/
 /var/
 /vendor/
-/migration/
+/migrations/
 ###< symfony/framework-bundle ###
 
 ###> symfony/webpack-encore-bundle ###
@@ -34,3 +34,4 @@ yarn-error.log
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+/migrations/

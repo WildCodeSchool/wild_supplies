@@ -44,9 +44,29 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry("app", "./assets/app.js")
-    .addEntry("styles", "./assets/styles/app.scss")
-    .addEntry("category", "./assets/styles/category.scss")
-    .addEntry("formCategory", "./assets/styles/formCategoryItem.scss")
+    .addEntry("showjs", "./assets/js/show.js")
+    .addEntry("productsjs", "./assets/js/products.js")
+    .addEntry("form_productsjs", "./assets/js/form_products.js")
+    .addEntry("navjs", "./assets/js/nav.js")
+
+
+    .addEntry("nav", "./assets/styles/nav.scss")
+    .addEntry("cart", "./assets/styles/cart.scss")
+    .addEntry("products", "./assets/styles/products.scss")
+    .addEntry("productCard", "./assets/styles/productCard.scss")
+    .addEntry("book", "./assets/styles/book.scss")
+    .addEntry("button", "./assets/styles/button.scss")
+    .addEntry("home", "./assets/styles/home.scss")
+    .addEntry("login", "./assets/styles/login.scss")
+    .addEntry("pageSwitcher", "./assets/styles/pageSwitcher.scss")
+    .addEntry("ratingStars", "./assets/styles/ratingStars.scss")
+    .addEntry("show", "./assets/styles/show.scss")
+    .addEntry("formCategoryItem", "./assets/styles/formCategoryItem.scss")
+    .addEntry("indexCategoryItems", "./assets/styles/indexCategoryItems.scss")
+    .addEntry("utils", "./assets/styles/utils.scss")
+    .addEntry("form_products", "./assets/styles/form_products.scss")
+    .addEntry("footerLink", "./assets/styles/footerLink.scss")
+    .addEntry("footer", "./assets/styles/footer.scss")
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge("./assets/controllers.json")

@@ -6,10 +6,12 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields: ['pseudo'], message: 'There is already an account with this pseudo')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -46,6 +48,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     private ?string $photo = null;
+
+    // #[Vich\UploadableField(mapping: 'profile_picture', fileNameProperty: 'photo')]
+    // private File $photoFile;
 
     #[ORM\Column]
     private ?int $rating = 5;
@@ -217,6 +222,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    // public function setPhotoFile(File $image = null): User
+    // {
+    //     $this->photoFile = $image;
+    //     return $this;
+    // }
+
+    // public function getPhotoFile(): ?File
+    // {
+    //     return $this->photoFile;
+    // }
     /**
      * @return Collection<int, Cart>
      */
