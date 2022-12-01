@@ -12,10 +12,11 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 use App\Repository\ProductRepository;
 use App\Form\ProductType;
 use App\Entity\Product;
+use App\Entity\User;
 use DateTime;
 
 #[Route('products', name: 'products_')]
-class ProductController extends AbstractController
+class ProductController extends BaseController
 {
     #[Route('/', methods: ["GET"], name: 'index')]
     public function index(ProductRepository $productRepository): Response
@@ -47,6 +48,10 @@ class ProductController extends AbstractController
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
         $product->setDate(new DateTime('now'));
+        // set user à user connecté
+        $product->setUser($this->getUser());
+        $product->setStatusSold("en vente");
+        $product->setCart(null);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $productRepository->save($product, true);
@@ -88,5 +93,22 @@ class ProductController extends AbstractController
         }
 
         return $this->redirectToRoute('products_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/book', name: 'app_book')]
+    public function book(ProductRepository $productRepository): Response
+    {
+
+            $products = $productRepository->findAll();
+            $user = $this->getUser();
+            $productsUser = $productRepository->productuser($user);
+            $productsBuy = $productRepository->productuserbuy($user);
+            $productsSold = $productRepository->productsold($user);
+            return $this->render('product/book.html.twig', [
+              'products' => $products,
+              'productsUser' => $productsUser,
+              'productsBuy' => $productsBuy,
+              'productsSold' => $productsSold
+            ]);
     }
 }

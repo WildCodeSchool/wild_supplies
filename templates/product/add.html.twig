@@ -2,11 +2,78 @@
 
 
 {% block body %}
-	{{ form_start(form) }}
+<main class="container">
+{% if '/edit' in app.request.pathinfo %}
+		<h1 class="text-center">
+			Editer le produit
+		</h1>
+	{% endif %}
 
-	{{ form_widget(form) }}
+	{% if '/add' in app.request.pathinfo %}
+		<h1 class="text-center">
+			Ajouter le produit
+		</h1>
+	{% endif %}
+    {{ form_start(form, {
+            attr: {'class': 'form'}
+        }) }}
+        {{ form_row(form.title, {
+            label: 'titre',
+            attr: {'class': 'form-control'}
+        }) }}
+        {{ form_row(form.price, {
+            label: 'prix',
+            attr: {'class': 'form-control'}
+        }) }}
+        {{ form_row(form.description, {
+            label: 'description',
+            attr: {'class': 'form-control'}
+        }) }}
+        {{ form_row(form.photoFile, {
+            label: 'photo',
+            attr: {'class': 'form-control'}
+        }) }}
 
-	<button type="submit">Enregister produit</button>
+        {{ form_row(form.material, {
+            label: 'Matériel',
+            attr: {'class': 'form-control'}
+        }) }}
+        {{ form_row(form.categoryRoom, {
+            label: 'Pour quelle Pièces ?',
+            attr: {'class': 'form-control'}
+        }) }}
+        {{ form_row(form.color, {
+            label: 'couleur',
+            attr: {'class': 'form-control'}
+        }) }}
+        {{ form_row(form.state, {
+            label: 'état',
+            attr: {'class': 'form-control'}
+        }) }}
+        {{ form_row(form.showPhoneUser, {
+            label: 'afficher votre numéro de téléphone',
+            attr: {'class': 'form-control'}
+        }) }}
+        {{ form_row(form.showEmailUser, {
+            label: 'afficher votre email',
+            attr: {'class': 'form-control'}
+        }) }}
+        {{ form_row(form.categoryItem, {
+            label: 'catégorie',
+            attr: {'class': 'form-control'}
+        }) }}
+        {% if '/edit' in app.request.pathinfo %}
+		<button type="submit" class="centerButton btn btn-lg btn-primary">Mettre à jour le produit</button>
+		{# <a href="{{ path('products_') }}">back to list</a> #}
+	{% endif %}
 
-	{{ form_end(form) }}
+	{% if '/add' in app.request.pathinfo %}
+		<button type="submit" class="centerButton btn btn-lg btn-primary">Ajouter le produit</button>
+	{% endif %}
+
+
+
+    {{ form_end(form) }}
+
+</main>
 {% endblock %}

@@ -1,6 +1,7 @@
 {% from "_macros/loginPrompt.html.twig" import loginPrompt %}
 {% from "_macros/utils.html.twig" import button, userAvatar %}
 
+
 <header class='top-bar'>
 	<div class="main">
 		<a href="/">
@@ -17,16 +18,17 @@
 				<a href="/products/add"><img src="/{{ pathImages }}Vector.png"></a>
 			</li>
 			<li>
-				<a href="/book"><img src="/{{ pathImages }}carnet.png"></a>
+				<a href="/products/book"><img src="/{{ pathImages }}carnet.png"></a>
 			</li>
 			<li>
 
 				<a href="/cart"><img src="/{{ pathImages }}panier.png">
 
+
                     {% for cart in app.user.carts %}
                         {% if (cart.validated == false) and (cart|length > 0) %}
                         <div class="cartNbr">
-                            {{cart|length}}
+                            {{ cart.products|length }}
                         </div>
                         {% endif %}
                     {% endfor %}
@@ -79,7 +81,7 @@
 			<ul>
 
 				<li><a href="/products/add"><img src="{{ pathImages }}Vector.png" alt="add logo"></a></li>
-				<li><a href="/book"><img src="{{ pathImages }}carnet.png" alt="book logo"></a></li>
+				<li><a href="/products/book"><img src="{{ pathImages }}carnet.png" alt="book logo"></a></li>
 				<li><a href="/cart"><img src="{{ pathImages }}panier.png" alt="cart logo">
         {% for cart in app.user.carts %}
                         {% if (cart.validated == false) and (cart|length > 0) %}
