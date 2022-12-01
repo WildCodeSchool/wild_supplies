@@ -4,27 +4,35 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\String\Slugger\SluggerInterface;
 use App\Repository\ProductRepository;
 use App\Form\ProductType;
 use App\Entity\Product;
 use App\Entity\User;
+use App\Repository\CategoryItemRepository;
 use DateTime;
 
 #[Route('products', name: 'products_')]
 class ProductController extends BaseController
 {
     #[Route('/', methods: ["GET"], name: 'index')]
-    public function index(ProductRepository $productRepository): Response
-    {
-        $products = $productRepository->selecteverything();
+    public function index(
+        ProductRepository $productRepository,
+        Request $request,
+        CategoryItemRepository $categoryRepository
+    ): Response {
+        $categoryObject = null;
+        if ($request->query->get('category')) {
+            $category = $request->query->get('category');
+            $categoryObject = $categoryRepository->findOneById($category);
+            $products = $productRepository->findBy(["categoryItem" => $category]);
+        } else {
+            $products = $productRepository->selecteverything();
+        }
 
         return $this->render('product/index.html.twig', [
-            'products' => $products
+            'products' => $products,
+            'category' => $categoryObject
         ]);
     }
 

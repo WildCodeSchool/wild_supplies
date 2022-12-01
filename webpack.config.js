@@ -67,6 +67,7 @@ Encore
     .addEntry("form_products", "./assets/styles/form_products.scss")
     .addEntry("footerLink", "./assets/styles/footerLink.scss")
     .addEntry("footer", "./assets/styles/footer.scss")
+    .addEntry("form_prod", "./assets/styles/form_prod.scss")
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge("./assets/controllers.json")
