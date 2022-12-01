@@ -1,4 +1,5 @@
 {{ form_start(form) }}
+{{ form_row(categoryForm.descrition, { label: 'Description', attr: {'class': 'form-control'}})}}
 {{ form_widget(form) }}
 <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

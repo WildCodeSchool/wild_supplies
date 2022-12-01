@@ -48,7 +48,7 @@ class Product
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\ManyToOne(inversedBy: 'products')]
+    #[ORM\ManyToOne(inversedBy: 'products', cascade: ["persist"])]
     #[ORM\JoinColumn(nullable: false)]
     private ?CategoryItem $categoryItem = null;
 

@@ -3,12 +3,19 @@
 namespace App\Entity;
 
 use App\Repository\CategoryItemRepository;
+use DateTime;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: CategoryItemRepository::class)]
+#[Vich\Uploadable]
 class CategoryItem
 {
     #[ORM\Id]
@@ -25,8 +32,26 @@ class CategoryItem
     #[ORM\Column(length: 255)]
     private ?string $photo = null;
 
+    #[Vich\UploadableField(mapping: 'category_picture', fileNameProperty: 'photo')]
+    #[Assert\File(
+        maxSize: '2M',
+        mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
+    )]
+    private ?File $photoFile = null;
+
     #[ORM\Column(length: 255)]
     private ?string $logo = null;
+
+    #[Vich\UploadableField(mapping: 'category_picture', fileNameProperty: 'logo')]
+    #[Assert\File(
+        maxSize: '1M',
+        mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
+    )]
+    private ?File $logoFile = null;
+
+    #[ORM\Column(type: 'datetime')]
+    private ?DateTimeInterface $updatedAt = null;
+
 
     #[ORM\OneToMany(mappedBy: 'categoryItem', targetEntity: Product::class, orphanRemoval: true)]
     private Collection $products;
@@ -130,6 +155,54 @@ class CategoryItem
     public function setInCarousel(bool $inCarousel): self
     {
         $this->inCarousel = $inCarousel;
+
+        return $this;
+    }
+
+    public function setPhotoFile(File $image = null): CategoryItem
+    {
+        $this->photoFile = $image;
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+        }
+        return $this;
+    }
+
+    public function getPhotoFile(): ?File
+    {
+        return $this->photoFile;
+    }
+
+    public function setLogoFile(File $image = null): CategoryItem
+    {
+        $this->logoFile = $image;
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+        }
+        return $this;
+    }
+
+    public function getLogoFile(): ?File
+    {
+        return $this->logoFile;
+    }
+
+    /**
+     * Get the value of updatedAt
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set the value of updatedAt
+     *
+     * @return  self
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

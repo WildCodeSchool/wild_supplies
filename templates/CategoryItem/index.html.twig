@@ -5,6 +5,11 @@
 {% block title %}Wild Supply
 {% endblock %}
 
+{% block stylesheets %}
+	{{ encore_entry_link_tags('formCategoryItem') }}
+	{{ encore_entry_link_tags('indexCategoryItems') }}
+{% endblock %}
+
 
 {% block body %}
 	<main class="container index-category">
@@ -18,8 +23,8 @@
 					<label class="label-cat">
 						<input class="checkbox-category" type="checkbox" name="category[]" value="{{categoryItem.title}}">
 						<div class="label-category">
-							<div class="card-category" style="background-image: url('{{categoryItem.photo}}');">
-								<img src="/{{ pathImages }}{{ categoryItem.logo}}" alt="logo of {{categoryItem.title}}" class="logo-card-category" style="background-color: white">
+							<div class="card-category" style="background-image: url(/images/category/{{ categoryItem.photo }});">
+								<img src="/images/category/{{ categoryItem.logo }}" alt="logo of {{categoryItem.logo}}" class="logo-card-category" style="background-color: white">
 								<div class="text-card">
 									<h3>{{ categoryItem.title }}</h3>
 									<p>{{ categoryItem.description}}</p>
@@ -27,16 +32,20 @@
 							</div>
 						</div>
 						<a href="/categories_items/edit?id={{ categoryItem.id }}">
-							<div class="penEditCategory" style="background-image: url(assets/images/pen_icon.png);"></div>
+							<div class="penEditCategory" style="background-image: url( {{ asset('build/images/pen_icon.png') }});"></div>
 						</a>
 					</label>
 				{% else %}
 					<li>Nothing to display</li>
 				{% endfor %}
 			</div>
-			<section class="buttons-form">
-				<button type="submit" class="btn">Valider</button>
-			</section>
-		</form>
-	</main>
-{% endblock %}
+			<button type="submit" class="btn">Valider</button>
+		</section>
+	</form>
+	{{ form_start(form) }}
+	<input type="hidden" name="type" value="add">
+	{{ form_widget(form) }}
+	<button class="btn">{{ button_label|default('Save') }}</button>
+	{{ form_end(form) }}
+
+</main>{% endblock %}
