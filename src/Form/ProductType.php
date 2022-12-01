@@ -30,11 +30,11 @@ class ProductType extends AbstractType
             ->add('material', ChoiceType::class, [
                 'choices'  =>
                 [
-                'bois' => 'bois',
-                'métal' => 'métal',
-                'tissus' => 'tissus',
-                'plastique' => 'plastique',
-                'verre' => 'verre',
+                'bois' => 'Bois',
+                'métal' => 'Métal',
+                'tissus' => 'Tissus',
+                'plastique' => 'Plastique',
+                'verre' => 'Verre',
                 'PVC' => 'PVC'
                 ],
                 'multiple' => true,
