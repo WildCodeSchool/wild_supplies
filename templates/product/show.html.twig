@@ -150,8 +150,10 @@
 				<!--Add a condition to render visible the error message only when the button iś clicked-->
 				<a class="productAddButton" href="/register">Créer un compte</a>
 				<p>Veuillez d'abord vous connecter ou vous créer un compte pour avoir accès à votre panier</p>
-			{% elseif product.user.id != app.user.id and product.statusSold != 'en panier' %}
-				<a class="productAddButton" href="/cart/add?id={{product.id}}">Ajouter au panier</a>
+			{% elseif product.user.id != app.user.id and product.statusSold == 'en vente' %}
+				<a class="productAddButton" href="{{ path("cart_add", { id: product.id }) }}">Ajouter au panier</a>
+        {% elseif product.user.id != app.user.id and product.statusSold == 'vendu' %}
+				<h2>VENDU</h2>
 			{% endif %}
 		</article>
 
@@ -187,8 +189,13 @@
 			<img src="{{ asset(pathImages ~ 'google-maps.jpg') }}" alt="map">
 		</article>
 	</main>
-	<a href="{{ path('products_index_edit', {'id': product.id}) }}">edit</a>
-	{{ include('product/_delete.html.twig') }}
+
+  {% if product.user == app.user %}
+	<div class="edit">
+		<a class="bouton" href="{{ path('products_index_edit', {'id': product.id}) }}">Éditer</a>
+		{{ include('product/_delete.html.twig') }}
+	</div>
+  {% endif %}
 {% endblock %}
 
 {% block javascript %}

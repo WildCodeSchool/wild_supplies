@@ -25,8 +25,6 @@ class ProductRepository extends ServiceEntityRepository
     public function save(Product $entity, bool $flush = false): void
     {
             $this->getEntityManager()->persist($entity);
-
-
         if ($flush) {
             $this->getEntityManager()->flush();
         }
@@ -59,29 +57,36 @@ class ProductRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function productuser(User $user): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.user = :user')
+            ->setParameter('user', $user)
+            ->orderBy('p.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 
-    //    /**
-    //     * @return Program[] Returns an array of Program objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('p.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function productuserbuy(User $user): array
+    {
+        return $this->createQueryBuilder('p')
+            ->join('p.cart', 'c')
+            ->andWhere("p.statusSold = 'vendu'")
+            ->andWhere('c.user = :user')
+            ->setParameter('user', $user->getId())
+            ->orderBy('p.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 
-    //    public function findOneBySomeField($value): ?Program
-    //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    public function productsold(User $user): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.user = :user')
+            ->andWhere("p.statusSold = 'vendu'")
+            ->setParameter('user', $user)
+            ->orderBy('p.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 }

@@ -3,14 +3,17 @@
 
 {% block body %}
 <main class="container">
-	{# {{ form_start(form) }}
+{% if '/edit' in app.request.pathinfo %}
+		<h1 class="text-center">
+			Editer le produit
+		</h1>
+	{% endif %}
 
-	{{ form_widget(form) }}
-
-	<button type="submit">Enregister produit</button>
-
-	{{ form_end(form) }} #}
-<h1 class="text-center">Ajouter un produit</h1>
+	{% if '/add' in app.request.pathinfo %}
+		<h1 class="text-center">
+			Ajouter le produit
+		</h1>
+	{% endif %}
     {{ form_start(form, {
             attr: {'class': 'form'}
         }) }}
@@ -59,10 +62,18 @@
             label: 'catégorie',
             attr: {'class': 'form-control'}
         }) }}
-        <button type="submit" class="centerButton btn btn-lg btn-primary">Ajouter</button>
+        {% if '/edit' in app.request.pathinfo %}
+		<button type="submit" class="centerButton btn btn-lg btn-primary">Mettre à jour le produit</button>
+		{# <a href="{{ path('products_') }}">back to list</a> #}
+	{% endif %}
+
+	{% if '/add' in app.request.pathinfo %}
+		<button type="submit" class="centerButton btn btn-lg btn-primary">Ajouter le produit</button>
+	{% endif %}
 
 
 
     {{ form_end(form) }}
+
 </main>
 {% endblock %}

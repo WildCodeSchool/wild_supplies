@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+
+{% from "_macros/productCard.html.twig" import productCardContainer %}
+{% from "_macros/utils.html.twig" import boxedTitle %}
+{% from "_macros/productCard.html.twig" import productCard %}
+
+{% block stylesheet %}
+	{{ encore_entry_link_tags('productCard') }}
+	{{ encore_entry_link_tags('form_products') }}
+	{{ encore_entry_link_tags('home') }}
+
+
+{% endblock %}
+
+{% block body %}
+	<main>
+		<h1 class="text-center">Mes produits à aller chercher</h1>
+		<div class="productsHome">
+			{% if not (productsBuy is empty) %}
+				<div class="products">
+					{% for product in productsBuy %}
+						{{ productCard(product) }}
+					{% endfor %}
+				</div>
+			{% else %}
+				<h2 class="text-center">--- aucun produits à aller chercher---</h2>
+			{% endif %}
+		</div>
+		<h1 class="text-center">Mes produits en vente</h1>
+		<div class="productsHome">
+			{% if not (productsUser is empty) %}
+				<div class="products">
+					{% for product in productsUser %}
+						{{ productCard(product) }}
+					{% endfor %}
+				</div>
+			{% else %}
+				<h2 class="text-center">--- aucun produits en vente ---</h2>
+			{% endif %}
+		</div>
+		<h1 class="text-center">Mes produits vendus</h1>
+		<div class="productsHome">
+			{% if not (productsSold is empty) %}
+				<div class="products">
+					{% for product in productsSold %}
+						{{ productCard(product) }}
+					{% endfor %}
+				</div>
+			{% else %}
+				<h2 class="text-center">--- aucun produits vendu ---</h2>
+			{% endif %}
+		</div>
+	</main>
+{% endblock %}
