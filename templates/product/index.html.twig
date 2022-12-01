@@ -13,46 +13,19 @@
 {% block body %}
 	<main>
 		<div class="header">
+
 			<h1 class="text-center">
-				Tous les produits :
+        {% if category %}
+          Tous les produits de {{ category.title }}:
+        {% else %}
+          Tous les produits:
+        {% endif %}
 			</h1>
 
-			{# <a class="addProduit" href="/products/add ">
-				Ajouter un nouveau produit :
-			</a> #}
 		</div>
 		{% if products is not empty %}
 			<div
 				class="flex_article">
-				{# {% for product in products %}
-									<article class="productCard" onload="productCard.onload(this)">
-										<a href="{{ path('products_show', {id: product.id}) }}">
-											<div class="imageContainer">
-												<div class="image" style="background-image: url({{ asset(pathImages ~ product.photo) }});"></div>
-											</div>
-											<div class="content">
-												<div>
-													<div>
-														<div class="seller">
-															<p class="label">Vendu par</p>
-															<div class="user">
-																<div class="avatar" style="background-image: url({{ asset(product.user.photo) }});"></div>
-																<p class="pseudo">
-																	{{ product.user.pseudo }}
-																</p>
-															</div>
-														</div>
-													</div>
-
-												</div>
-												<div>
-													<h2 class="title">{{ product.title }}</h2>
-													<p class="price">{{ product.price ~ " €" }}</p>
-												</div>
-											</div>
-										</a>
-									</article>
-								{% endfor %} #}
 				{% for product in products %}
 					{{ productCard(product) }}
 				{% endfor %}

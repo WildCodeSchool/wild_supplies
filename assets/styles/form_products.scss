@@ -176,6 +176,13 @@ input#add_file2 {
     font-size: 1rem;
 }
 
+.form-control {
+  label{
+    margin: 0 10px;
+  }
+}
+
+
 @media screen and (max-width:800px) {
 
     .title-form {
@@ -203,5 +210,6 @@ input#add_file2 {
     .button {
         width: 40%;
     }
+
 
 }

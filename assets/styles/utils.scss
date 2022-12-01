@@ -1,7 +1,7 @@
 /* Button */
 .btn-primary {
     display: block;
-    width: 15%;
+
     padding: 8px;
     color: #fff;
     text-align: center;
@@ -64,6 +64,10 @@
     width: 100%;
 }
 
+.mobile-nav .userAvatar {
+    margin-left: 20px;
+}
+
 /* Boxed Title */
 .boxedTitle {
     margin: 3rem;
@@ -71,4 +75,10 @@
 
 .boxedTitle h2 {
     text-align: center;
+}
+
+@media screen and (max-width: 700px) {
+    .btn-primary {
+        width: auto;
+    }
 }

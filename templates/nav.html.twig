@@ -80,9 +80,9 @@
 			</div>
 			<ul>
 
-				<li><a href="/products/add"><img src="{{ pathImages }}Vector.png" alt="add logo"></a></li>
-				<li><a href="/products/book"><img src="{{ pathImages }}carnet.png" alt="book logo"></a></li>
-				<li><a href="/cart"><img src="{{ pathImages }}panier.png" alt="cart logo">
+				<li><a href="/products/add"><img src="/{{ pathImages }}Vector.png" alt="add logo"></a></li>
+				<li><a href="/products/book"><img src="/{{ pathImages }}carnet.png" alt="book logo"></a></li>
+				<li><a href="/cart"><img src="/{{ pathImages }}panier.png" alt="cart logo">
         {% for cart in app.user.carts %}
                         {% if (cart.validated == false) and (cart|length > 0) %}
                         <div class="cartNbr">
