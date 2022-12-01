@@ -214,7 +214,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $product->setTitle($value[0]);
             $product->setPrice($value[1]);
             $product->setDescription($value[2]);
-            $product->setPhoto($value[3]);
+            $product->setPhoto(($value[3]));
             $product->setStatusSold($value[4]);
             $product->setMaterial($value[5]);
             $product->setCategoryItem($this->getReference($value[6]));

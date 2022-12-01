@@ -2,11 +2,31 @@
 
 
 {% block body %}
+	{% if '/edit' in app.request.pathinfo %}
+		<h1>
+			Editer le produit
+		</h1>
+	{% endif %}
+
+	{% if '/add' in app.request.pathinfo %}
+		<h1>
+			Ajouter le produit
+		</h1>
+	{% endif %}
+
 	{{ form_start(form) }}
 
 	{{ form_widget(form) }}
 
-	<button type="submit">Enregister produit</button>
+	{% if '/edit' in app.request.pathinfo %}
+		<button type="submit">Mettre à jour le produit</button>
+		<a href="{{ path('products_index') }}">back to list</a>
+	{% endif %}
+
+	{% if '/add' in app.request.pathinfo %}
+		<button type="submit">Ajouter le produit</button>
+	{% endif %}
+
 
 	{{ form_end(form) }}
 {% endblock %}

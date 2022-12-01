@@ -183,8 +183,13 @@
 			<img src="{{ asset(pathImages ~ 'google-maps.jpg') }}" alt="map">
 		</article>
 	</main>
-	<a href="{{ path('products_index_edit', {'id': product.id}) }}">edit</a>
-	{{ include('product/_delete.html.twig') }}
+
+
+	<div class="edit">
+		<a class="bouton" href="{{ path('products_index_edit', {'id': product.id}) }}">Éditer</a>
+		{{ include('product/_delete.html.twig') }}
+	</div>
+
 {% endblock %}
 
 {% block javascript %}
